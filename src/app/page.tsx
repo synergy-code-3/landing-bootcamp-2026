@@ -370,7 +370,7 @@ function RouletteWheel({ prizes, highlight }: { prizes: typeof content.prizes.it
               <text
                 x={seg.lx} y={seg.ly}
                 textAnchor="middle" dominantBaseline="middle"
-                fontSize="18"
+                fontSize="24"
                 transform={`rotate(${seg.textRot},${seg.lx},${seg.ly})`}
               >{seg.prize.icon}</text>
             </g>
@@ -381,17 +381,6 @@ function RouletteWheel({ prizes, highlight }: { prizes: typeof content.prizes.it
           <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="12" fontWeight="900" fill="rgba(251,191,36,0.8)">$</text>
         </g>
 
-        {/* Separadores radiales (líneas entre segmentos, fijos) */}
-        {Array.from({ length: N }, (_, i) => {
-          const a = (i / N * 360 - 90) * Math.PI / 180;
-          return (
-            <line key={i}
-              x1={cx + (hub + 1) * Math.cos(a)} y1={cy + (hub + 1) * Math.sin(a)}
-              x2={cx + (R - 1) * Math.cos(a)}   y2={cy + (R - 1) * Math.sin(a)}
-              stroke="rgba(0,0,0,0.6)" strokeWidth="2"
-            />
-          );
-        })}
 
         {/* Puntero fijo en la parte superior */}
         <polygon
