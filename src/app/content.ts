@@ -374,7 +374,7 @@ export const content = {
         stats: [
           { number: "COO",     label: "Sinergéticos · el podcast de negocios #1 en México" },
           { number: "+11M",    label: "personas alcanzadas con la estrategia de IA y contenido que diseña y opera" },
-          { number: "IA · Tráfico · Contenido", label: "el stack técnico del crecimiento que enseña en el Bootcamp 2026" },
+          { number: "IA · Tráfico", label: "el stack técnico del crecimiento que enseña en el Bootcamp 2026" },
         ],
       },
     ],
