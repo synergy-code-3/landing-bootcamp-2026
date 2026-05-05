@@ -248,28 +248,47 @@ function PillarsSection() {
         </div>
 
         <div className="pillars-stage" ref={stageRef}>
-          {/* Connector line (ahora arriba del grid para indicar progreso) */}
-          <div className="pillars-connector" aria-hidden="true">
-            <div className="pillars-connector-track" />
-            <div className="pillars-connector-fill" style={{ width: `${(doneCount / pillars.length) * 100}%` }} />
-            {pillars.map((p, i) => (
-              <span
-                key={i}
-                className={`pillars-connector-dot ${visible[i] ? "on" : ""}`}
-                style={{ left: `${(i / (pillars.length - 1)) * 100}%`, ["--pillar-color" as string]: p.color }}
-              >
-                <span className="pillars-connector-pulse" />
-              </span>
-            ))}
+          {/* Pilar maestro — Acelerar */}
+          {(() => { const p = pillars[0]; const isOn = visible[0]; return (
+            <div
+              data-idx={0}
+              className={`pillar-card pillar-master ${isOn ? "visible" : ""}`}
+              style={{ "--pillar-color": p.color, "--pillar-delay": "0s" } as React.CSSProperties}
+            >
+              <div className="pillar-card-glow" />
+              <div className="pillar-master-left">
+                <div className="pillar-num">{p.n}</div>
+                <div className="pillar-tag">{p.tag}</div>
+                <h3 className="pillar-title">{p.title}</h3>
+                <p className="pillar-headline">{p.headline}</p>
+              </div>
+              <div className="pillar-master-right">
+                <p className="pillar-body">{p.body}</p>
+                <ul className="pillar-bullets">
+                  {p.bullets.map((b) => (
+                    <li key={b}><span className="pillar-check"><CheckCircle /></span>{b}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          );})()}
+
+          {/* Divisor hacia sub-pilares */}
+          <div className="pillars-sub-divider" aria-hidden="true">
+            <div className="pillars-sub-divider-line" />
+            <span className="pillars-sub-divider-label">Los 3 pilares de la aceleración</span>
+            <div className="pillars-sub-divider-line" />
           </div>
 
+          {/* Sub-pilares */}
           <div className="pillars-scene">
-            {pillars.map((p, i) => {
-              const isOn = visible[i];
+            {pillars.slice(1).map((p, i) => {
+              const idx = i + 1;
+              const isOn = visible[idx];
               return (
                 <div
                   key={p.n}
-                  data-idx={i}
+                  data-idx={idx}
                   className={`pillar-card ${isOn ? "visible" : ""}`}
                   style={{ "--pillar-color": p.color, "--pillar-delay": `${i * 0.12}s` } as React.CSSProperties}
                 >
@@ -287,12 +306,6 @@ function PillarsSection() {
                 </div>
               );
             })}
-          </div>
-
-          <div className="pillars-caption">
-            {doneCount === 0 && <span>Desliza para ver los {pillars.length} ejes del Bootcamp</span>}
-            {doneCount > 0 && doneCount < pillars.length && <span className="pillars-caption-active">{doneCount} / {pillars.length} ejes activados</span>}
-            {doneCount === pillars.length && <span className="pillars-caption-active" style={{ color: "#4ade80" }}>{pillars.length} / {pillars.length} ejes activados — negocio acelerado</span>}
           </div>
         </div>
 
