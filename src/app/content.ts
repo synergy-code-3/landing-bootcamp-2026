@@ -278,59 +278,59 @@ export const content = {
     list: [
       { name: "Jorge Serratos",     role: "Host",     title: "CEO Grupo Serlo · Doctor en derecho · Podcast Sinergéticos #1 Negocios México · +11M seguidores",
         topic: "Cómo construir un movimiento, no solo un negocio",
-        pillar: "Entorno", featured: true, ig: "jorgeserratos", photo: "/speakers/jorgeserratos.png", initial: "J", bg: "linear-gradient(135deg,#00e040,#005a18)" },
+        pillar: "Entorno", featured: true, ig: "jorgeserratos", photo: "/speakers/jorgeserratos.webp", initial: "J", bg: "linear-gradient(135deg,#00e040,#005a18)" },
 
       { name: "Manuel de León",     role: "Co-host",  title: "COO Sinergéticos · Experto en IA, tráfico y contenido digital",
         topic: "IA + tráfico + contenido: el stack técnico del crecimiento en 2026",
-        pillar: "Velocidad", featured: true, ig: "manueldeleonmjr", photo: "/speakers/manueldeleon.png", initial: "M", bg: "linear-gradient(135deg,#4ade80,#00a030)" },
+        pillar: "Velocidad", featured: true, ig: "manueldeleonmjr", photo: "/speakers/manueldeleon.webp", initial: "M", bg: "linear-gradient(135deg,#4ade80,#00a030)" },
 
       { name: "Efrén Martínez",     title: "PhD en logoterapia · Autor de 25 libros · Coach de líderes · 1M seguidores",
         topic: "Hazte dueño de ti: romper las programaciones mentales que te sabotean",
-        pillar: "Mentalidad", ig: "efrenmartinezo", photo: "/speakers/efrenmartinez.jpg", initial: "E", bg: "linear-gradient(135deg,#14b8a6,#134e4a)" },
+        pillar: "Mentalidad", ig: "efrenmartinezo", photo: "/speakers/efrenmartinez.webp", initial: "E", bg: "linear-gradient(135deg,#14b8a6,#134e4a)" },
 
       { name: "Salvador Alva",      title: "Empresario y speaker · Estrategia comercial y escalamiento",
         topic: "Estrategia comercial: cerrar ventas de 6 cifras sin depender de ti",
-        pillar: "Velocidad", ig: "s.dealba", photo: "/speakers/salvadoralva.jpg", initial: "S", bg: "linear-gradient(135deg,#6366f1,#312e81)" },
+        pillar: "Velocidad", ig: "s.dealba", photo: "/speakers/salvadoralva.webp", initial: "S", bg: "linear-gradient(135deg,#6366f1,#312e81)" },
 
       { name: "Pavo Gómez",         title: "Fundador GoLaunch · La agencia de lanzamientos #1 en México · Host del podcast Épicamente",
         topic: "Anatomía de un lanzamiento rentable: storytelling que convierte en frío",
-        pillar: "Velocidad", ig: "pavogomezorea", photo: "/speakers/pavogomez.jpg", initial: "P", bg: "linear-gradient(135deg,#f43f5e,#881337)" },
+        pillar: "Velocidad", ig: "pavogomezorea", photo: "/speakers/pavogomez.webp", initial: "P", bg: "linear-gradient(135deg,#f43f5e,#881337)" },
 
       { name: "Luis Fallas",        title: "CEO Centro de Superación Personal · +25 años transformando vidas",
         topic: "Potencial máximo: cómo el desarrollo personal desbloquea ingresos reales",
-        pillar: "Mentalidad", ig: "luis_fallas", photo: "/speakers/luisfallas.jpg", initial: "L", bg: "linear-gradient(135deg,#8b5cf6,#4c1d95)" },
+        pillar: "Mentalidad", ig: "luis_fallas", photo: "/speakers/luisfallas.webp", initial: "L", bg: "linear-gradient(135deg,#8b5cf6,#4c1d95)" },
 
       { name: "Alejandro Cardona",  title: "Economista · Fundador Seminario Creando Riqueza · 517K seguidores",
         topic: "Crear riqueza con inversiones: el emprendedor que también es inversionista",
-        pillar: "Velocidad", ig: "alejandrocardonascr", photo: "/speakers/alejandrocardona.png", initial: "A", bg: "linear-gradient(135deg,#fde047,#a16207)" },
+        pillar: "Velocidad", ig: "alejandrocardonascr", photo: "/speakers/alejandrocardona.webp", initial: "A", bg: "linear-gradient(135deg,#fde047,#a16207)" },
 
       { name: "César Sánchez",      title: "Emprendedor",
         topic: "Emprendimiento y negocios",
-        initial: "C", bg: "linear-gradient(135deg,#f97316,#7c2d12)", photo: "/speakers/cesarsanchez.jpg" },
+        initial: "C", bg: "linear-gradient(135deg,#f97316,#7c2d12)", photo: "/speakers/cesarsanchez.webp" },
 
       { name: "Daniel Garcia",      title: "Especialista en relaciones internacionales",
         topic: "Relaciones internacionales y negocios globales",
-        initial: "D", bg: "linear-gradient(135deg,#38bdf8,#0c4a6e)", photo: "/speakers/danielgarcia.jpg" },
+        initial: "D", bg: "linear-gradient(135deg,#38bdf8,#0c4a6e)", photo: "/speakers/danielgarcia.webp" },
 
       { name: "Fer León",           title: "Fundadora Ojo de Miel · Podcast Emprende con Fer León",
         topic: "Cómo escalar un negocio físico y construir una marca con propósito",
         pillar: "Velocidad", ig: "ferleonmx",
-        initial: "F", bg: "linear-gradient(135deg,#4ade80,#065f46)", photo: "/speakers/ferleon.jpg" },
+        initial: "F", bg: "linear-gradient(135deg,#4ade80,#065f46)", photo: "/speakers/ferleon.webp" },
 
       { name: "Memo Serrano",       title: "Business & Mindset Mentor · Proctor Gallagher Institute · Autor bestseller",
         topic: "Cómo reprogramar tu mentalidad financiera para escalar sin límites",
         pillar: "Mentalidad", ig: "memo_serrano_d",
-        initial: "M", bg: "linear-gradient(135deg,#a855f7,#581c87)", photo: "/speakers/memoserrano.jpg" },
+        initial: "M", bg: "linear-gradient(135deg,#a855f7,#581c87)", photo: "/speakers/memoserrano.webp" },
 
       { name: "Regina Carrot",      title: "+14M seguidores · TEDx Speaker · Fundadora Speaker Magnética · Forbes · Ex Pepsico",
         topic: "Cómo construir una audiencia millonaria y monetizar tu mensaje",
         pillar: "Velocidad", ig: "reginacarrot",
-        initial: "R", bg: "linear-gradient(135deg,#ec4899,#831843)", photo: "/speakers/reginacarrot.jpg" },
+        initial: "R", bg: "linear-gradient(135deg,#ec4899,#831843)", photo: "/speakers/reginacarrot.webp" },
 
       { name: "Susi Vereecken",     title: "Directora Maxwell Leadership® LATAM · Coach internacional · Speaker",
         topic: "Liderazgo que escala: cómo desarrollar el equipo y la cultura que tu negocio necesita",
         pillar: "Entorno", ig: "susivv",
-        initial: "S", bg: "linear-gradient(135deg,#eab308,#713f12)", photo: "/speakers/susivereecken.jpg" },
+        initial: "S", bg: "linear-gradient(135deg,#eab308,#713f12)", photo: "/speakers/susivereecken.webp" },
     ] as Speaker[],
   },
 
@@ -355,7 +355,7 @@ export const content = {
     host_badge: "Host del Bootcamp",
     name_1:     "Jorge",
     name_em:    "Serratos",
-    photo:      "/speakers/jorgeserratos.png",
+    photo:      "/speakers/jorgeserratos.webp",
     bio:        "Hace 4 años era un abogado con un negocio exitoso pero topado: ingresos atados 100% a su presencia, sin margen para crecer. Llegó al límite y tomó la decisión de escalar.\n\nEscaló. Hoy dirige Grupo Serlo —6 empresas— y es el host de Sinergéticos, el podcast de negocios #1 en México con +11M de seguidores. Su filosofía: \"1+1=3\".",
     stats: [
       { number: "+11M",      label: "seguidores en todas sus plataformas" },

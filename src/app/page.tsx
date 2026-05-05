@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import NextImage from "next/image";
 import { content, type Speaker } from "./content";
 import { HeroBg } from "./HeroBg";
 import { initTracker, getTracker } from "@/lib/tracker";
@@ -677,11 +678,13 @@ function SpeakerCard({ s }: { s: Speaker }) {
   return (
     <div className={`scm${s.featured ? " scm-featured" : ""}`}>
       {s.photo && photoOk ? (
-        <img
+        <NextImage
           className="scm-photo"
           src={s.photo}
           alt={s.name}
-          loading="lazy"
+          fill
+          sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, 200px"
+          style={{ objectFit: "cover", objectPosition: "top center" }}
           onError={() => setPhotoOk(false)}
         />
       ) : (
@@ -885,10 +888,14 @@ export default function Page() {
         <div className="credentials-inner container">
           <div className="credentials-layout">
             <div className="credentials-photo reveal">
-              <img
+              <NextImage
                 src={content.credentials.photo}
                 alt="Jorge Serratos"
                 className="credentials-portrait"
+                width={280}
+                height={340}
+                priority
+                sizes="(max-width: 640px) min(260px, 80vw), 280px"
               />
             </div>
             <div className="credentials-text reveal reveal-delay-1">
