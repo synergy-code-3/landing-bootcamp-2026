@@ -6,7 +6,7 @@ export interface Speaker {
   role?:     string | null;     // "Host", "Co-host" o null
   title:     string;            // bio corta (quién es)
   topic:     string;            // de qué va a hablar en el Bootcamp
-  pillar?:   "Mentalidad" | "Velocidad" | "Entorno";
+  pillar?:   "Acelerar" | "Entorno y Relaciones" | "Ventas y Utilidad" | "Mentalidad y Decisiones";
   ig?:       string;            // handle sin @
   photo?:    string;            // ruta a /public/speakers/<handle>.jpg (fallback a iniciales)
   featured?: boolean;
@@ -100,14 +100,14 @@ export const content = {
     ],
     quote: "Lo que hoy te limita, en 3 días puede dejar de existir.",
     callout_title: "El Bootcamp es el punto de quiebre.",
-    callout_body:  "No otro curso. No otra motivación. Tres días en vivo — sin grabación, sin repetición — donde instalas mentalidad, velocidad y entorno al mismo tiempo.",
+    callout_body:  "No otro curso. No otra motivación. Tres días en vivo — sin grabación, sin repetición — donde aceleras tus ventas, transformas tu entorno y reprogramas tu mentalidad al mismo tiempo.",
     journey: {
       eyebrow: "Así funciona el Bootcamp",
       title:   "3 días de enfoque = Una vida y un negocio que escale",
       steps: [
-        { day: "Día 1", tag: "Mentalidad",  title: "Rompe el techo invisible",     body: "Descubrirás el patrón mental que bloquea tu crecimiento y lo cambiarás por la mentalidad del empresario que opera a otro nivel." },
-        { day: "Día 2", tag: "Velocidad",   title: "Acelera tu crecimiento",        body: "Aprende a cobrar más, atraer más clientes y generar ingresos recurrentes. Las 3 palancas del crecimiento." },
-        { day: "Día 3", tag: "Entorno",     title: "Expande tu círculo cercano",    body: "Aprenderás a conectar con mentores y empresarios que te darán el círculo que tu negocio necesita para escalar." },
+        { day: "Día 1", tag: "Mentalidad y Decisiones", title: "Rompe el techo invisible",  body: "Descubrirás el patrón mental que bloquea tu crecimiento y lo cambiarás por la mentalidad del empresario que opera a otro nivel." },
+        { day: "Día 2", tag: "Ventas y Utilidad",      title: "Acelera tus ingresos",      body: "Aprende a cobrar más, atraer más clientes y generar ingresos recurrentes. Las 3 palancas del crecimiento." },
+        { day: "Día 3", tag: "Entorno y Relaciones",   title: "Expande tu círculo cercano", body: "Aprenderás a conectar con mentores y empresarios que te darán el círculo que tu negocio necesita para escalar." },
       ],
       result: "Saldrás con un plan estratégico para escalar a niveles que parecían imposibles.",
     },
@@ -144,57 +144,70 @@ export const content = {
     live_badge: "SOLO EN VIVO · Sin grabación",
   },
 
-  // ─── 3 PILARES (reemplaza el carrusel de promises) ──────────────────────
+  // ─── 4 EJES DEL BOOTCAMP ─────────────────────────────────────────────────
   pillars: {
-    label:    "Los 3 pilares",
-    title_1:  "La aceleración que hace",
-    title_em: "3× tu negocio",
-    subtitle: "No son pasos. Son tres capas que se apilan. Ninguna funciona sola. Las tres juntas cambian el juego.",
+    label:    "Los 4 ejes del Bootcamp",
+    title_1:  "Todo se mueve cuando",
+    title_em: "los 4 ejes operan",
+    subtitle: "No son temas aislados. Son los 4 ejes que transforman tu negocio al mismo tiempo. Ninguno funciona solo.",
     items: [
       {
         n: "01",
-        tag: "Mentalidad",
-        title: "Rompe los techos mentales",
-        headline: "Piensa como empresario, no como emprendedor.",
-        body: "Instalamos el sistema operativo del empresario: decisiones con datos, delegación, margen sobre esfuerzo y claridad sobre caos. Lo que hoy te frena no es tu mercado — es tu modelo mental.",
+        tag: "Acelerar",
+        title: "El método central",
+        headline: "No es trabajar más — es mover los 4 ejes al mismo tiempo.",
+        body: "Acelerar es el sistema central del Bootcamp. En 3 días intensivos instalas el método completo que mueve entorno, ventas y mentalidad en paralelo. No hay atajos — pero sí hay un orden.",
         bullets: [
-          "De auto-empleado a dueño de negocio",
-          "Sistemas > esfuerzo",
-          "Decisiones por ROI, no por emoción",
+          "De lineal a exponencial",
+          "Los 4 ejes trabajados en simultáneo",
+          "72 horas = punto de quiebre real",
         ],
         color: "#00e040",
       },
       {
         n: "02",
-        tag: "Velocidad",
-        title: "Acelera con las 3 palancas",
-        headline: "Más caro. A más personas. Con más recurrencia.",
-        body: "La velocidad no es trabajar más horas — es mover las palancas correctas. Te damos el método para subir ticket, escalar adquisición y convertir compra única en relación de valor recurrente.",
-        bullets: [
-          "Pricing y posicionamiento premium",
-          "Adquisición digital que no depende de ti",
-          "LTV por suscripción y ascensores",
-        ],
-        color: "#4ade80",
-      },
-      {
-        n: "03",
-        tag: "Entorno",
+        tag: "Tu entorno y relaciones",
         title: "Cambia tu ecosistema",
         headline: "Tu próximo nivel depende de tu siguiente círculo.",
-        body: "No se crece solo. Conectas con +20 speakers y miles de emprendedores que ya operan al nivel al que tú quieres llegar. El network que construyes en 3 días sigue dando frutos mucho después del evento.",
+        body: "No se crece solo. Conectas con +20 speakers y miles de emprendedores que ya operan al nivel al que tú quieres llegar. Las relaciones que construyes en 3 días siguen dando frutos mucho después del evento.",
         bullets: [
-          "Networking intencional con builders reales",
-          "Proveedores, socios y primeras ventas",
+          "Networking con builders reales",
+          "Mentores y socios estratégicos",
           "Comunidad que sostiene tu crecimiento",
         ],
         color: "#fbbf24",
       },
+      {
+        n: "03",
+        tag: "Tus ventas y utilidad",
+        title: "Más ingresos, mejor margen",
+        headline: "Cobrar más. A más personas. Con más recurrencia.",
+        body: "Las 3 palancas del crecimiento en acción: precio, volumen y recurrencia. Aprenderás a posicionarte premium, atraer clientes en automático y convertir compra única en ingresos recurrentes.",
+        bullets: [
+          "Pricing y posicionamiento premium",
+          "Adquisición digital que no depende de ti",
+          "Ingresos recurrentes y LTV",
+        ],
+        color: "#4ade80",
+      },
+      {
+        n: "04",
+        tag: "Tu mentalidad y toma de decisiones",
+        title: "Piensa como empresario",
+        headline: "El techo de tu negocio está en tu cabeza — hasta que lo rompes.",
+        body: "Instalarás el sistema operativo del empresario: decisiones con datos, delegación real, margen sobre esfuerzo. Lo que hoy te frena no es tu mercado — es tu modelo mental.",
+        bullets: [
+          "De auto-empleado a dueño de negocio",
+          "Decisiones por ROI, no por emoción",
+          "Sistemas > esfuerzo",
+        ],
+        color: "#a78bfa",
+      },
     ],
     synthesis: {
-      title: "Los 3 juntos =",
-      result: "negocio transformado",
-      caption: "Mentalidad + Velocidad + Entorno. Cuando las tres capas operan al mismo tiempo, el negocio deja de ser lineal y empieza a escalar.",
+      title: "Los 4 ejes =",
+      result: "negocio acelerado",
+      caption: "Acelerar + Entorno + Ventas + Mentalidad. Cuando los 4 ejes operan al mismo tiempo, el negocio deja de ser lineal y empieza a escalar.",
     },
   },
 
@@ -278,31 +291,31 @@ export const content = {
     list: [
       { name: "Jorge Serratos",     role: "Host",     title: "CEO Grupo Serlo · Doctor en derecho · Podcast Sinergéticos #1 Negocios México · +11M seguidores",
         topic: "Cómo construir un movimiento, no solo un negocio",
-        pillar: "Entorno", featured: true, ig: "jorgeserratos", photo: "/speakers/jorgeserratos.webp", initial: "J", bg: "linear-gradient(135deg,#00e040,#005a18)" },
+        pillar: "Acelerar", featured: true, ig: "jorgeserratos", photo: "/speakers/jorgeserratos.webp", initial: "J", bg: "linear-gradient(135deg,#00e040,#005a18)" },
 
       { name: "Manuel de León",     role: "Co-host",  title: "COO Sinergéticos · Experto en IA, tráfico y contenido digital",
         topic: "IA + tráfico + contenido: el stack técnico del crecimiento en 2026",
-        pillar: "Velocidad", featured: true, ig: "manueldeleonmjr", photo: "/speakers/manueldeleon.webp", initial: "M", bg: "linear-gradient(135deg,#4ade80,#00a030)" },
+        pillar: "Ventas y Utilidad", featured: true, ig: "manueldeleonmjr", photo: "/speakers/manueldeleon.webp", initial: "M", bg: "linear-gradient(135deg,#4ade80,#00a030)" },
 
       { name: "Efrén Martínez",     title: "PhD en logoterapia · Autor de 25 libros · Coach de líderes · 1M seguidores",
         topic: "Hazte dueño de ti: romper las programaciones mentales que te sabotean",
-        pillar: "Mentalidad", ig: "efrenmartinezo", photo: "/speakers/efrenmartinez.webp", initial: "E", bg: "linear-gradient(135deg,#14b8a6,#134e4a)" },
+        pillar: "Mentalidad y Decisiones", ig: "efrenmartinezo", photo: "/speakers/efrenmartinez.webp", initial: "E", bg: "linear-gradient(135deg,#14b8a6,#134e4a)" },
 
       { name: "Salvador Alva",      title: "Empresario y speaker · Estrategia comercial y escalamiento",
         topic: "Estrategia comercial: cerrar ventas de 6 cifras sin depender de ti",
-        pillar: "Velocidad", ig: "s.dealba", photo: "/speakers/salvadoralva.webp", initial: "S", bg: "linear-gradient(135deg,#6366f1,#312e81)" },
+        pillar: "Ventas y Utilidad", ig: "s.dealba", photo: "/speakers/salvadoralva.webp", initial: "S", bg: "linear-gradient(135deg,#6366f1,#312e81)" },
 
       { name: "Pavo Gómez",         title: "Fundador GoLaunch · La agencia de lanzamientos #1 en México · Host del podcast Épicamente",
         topic: "Anatomía de un lanzamiento rentable: storytelling que convierte en frío",
-        pillar: "Velocidad", ig: "pavogomezorea", photo: "/speakers/pavogomez.webp", initial: "P", bg: "linear-gradient(135deg,#f43f5e,#881337)" },
+        pillar: "Ventas y Utilidad", ig: "pavogomezorea", photo: "/speakers/pavogomez.webp", initial: "P", bg: "linear-gradient(135deg,#f43f5e,#881337)" },
 
       { name: "Luis Fallas",        title: "CEO Centro de Superación Personal · +25 años transformando vidas",
         topic: "Potencial máximo: cómo el desarrollo personal desbloquea ingresos reales",
-        pillar: "Mentalidad", ig: "luis_fallas", photo: "/speakers/luisfallas.webp", initial: "L", bg: "linear-gradient(135deg,#8b5cf6,#4c1d95)" },
+        pillar: "Mentalidad y Decisiones", ig: "luis_fallas", photo: "/speakers/luisfallas.webp", initial: "L", bg: "linear-gradient(135deg,#8b5cf6,#4c1d95)" },
 
       { name: "Alejandro Cardona",  title: "Economista · Fundador Seminario Creando Riqueza · 517K seguidores",
         topic: "Crear riqueza con inversiones: el emprendedor que también es inversionista",
-        pillar: "Velocidad", ig: "alejandrocardonascr", photo: "/speakers/alejandrocardona.webp", initial: "A", bg: "linear-gradient(135deg,#fde047,#a16207)" },
+        pillar: "Ventas y Utilidad", ig: "alejandrocardonascr", photo: "/speakers/alejandrocardona.webp", initial: "A", bg: "linear-gradient(135deg,#fde047,#a16207)" },
 
       { name: "César Sánchez",      title: "Emprendedor",
         topic: "Emprendimiento y negocios",
@@ -314,22 +327,22 @@ export const content = {
 
       { name: "Fer León",           title: "Fundadora Ojo de Miel · Podcast Emprende con Fer León",
         topic: "Cómo escalar un negocio físico y construir una marca con propósito",
-        pillar: "Velocidad", ig: "ferleonmx",
+        pillar: "Ventas y Utilidad", ig: "ferleonmx",
         initial: "F", bg: "linear-gradient(135deg,#4ade80,#065f46)", photo: "/speakers/ferleon.webp" },
 
       { name: "Memo Serrano",       title: "Business & Mindset Mentor · Proctor Gallagher Institute · Autor bestseller",
         topic: "Cómo reprogramar tu mentalidad financiera para escalar sin límites",
-        pillar: "Mentalidad", ig: "memo_serrano_d",
+        pillar: "Mentalidad y Decisiones", ig: "memo_serrano_d",
         initial: "M", bg: "linear-gradient(135deg,#a855f7,#581c87)", photo: "/speakers/memoserrano.webp" },
 
       { name: "Regina Carrot",      title: "+14M seguidores · TEDx Speaker · Fundadora Speaker Magnética · Forbes · Ex Pepsico",
         topic: "Cómo construir una audiencia millonaria y monetizar tu mensaje",
-        pillar: "Velocidad", ig: "reginacarrot",
+        pillar: "Ventas y Utilidad", ig: "reginacarrot",
         initial: "R", bg: "linear-gradient(135deg,#ec4899,#831843)", photo: "/speakers/reginacarrot.webp" },
 
       { name: "Susi Vereecken",     title: "Directora Maxwell Leadership® LATAM · Coach internacional · Speaker",
         topic: "Liderazgo que escala: cómo desarrollar el equipo y la cultura que tu negocio necesita",
-        pillar: "Entorno", ig: "susivv",
+        pillar: "Entorno y Relaciones", ig: "susivv",
         initial: "S", bg: "linear-gradient(135deg,#eab308,#713f12)", photo: "/speakers/susivereecken.webp" },
     ] as Speaker[],
   },

@@ -183,7 +183,8 @@ function WhatIsBootcamp() {
 function PillarsSection() {
   const stageRef = useRef<HTMLDivElement>(null);
   const synthRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState<[boolean, boolean, boolean]>([false, false, false]);
+  const pillarsCount = content.pillars.items.length;
+  const [visible, setVisible] = useState<boolean[]>(() => Array(pillarsCount).fill(false));
   const [synthVisible, setSynthVisible] = useState(false);
 
   useEffect(() => {
@@ -198,7 +199,7 @@ function PillarsSection() {
           if (entry.isIntersecting && Number.isFinite(idx)) {
             setVisible((prev) => {
               if (prev[idx]) return prev;
-              const next = [...prev] as [boolean, boolean, boolean];
+              const next = [...prev];
               next[idx] = true;
               return next;
             });
@@ -289,9 +290,9 @@ function PillarsSection() {
           </div>
 
           <div className="pillars-caption">
-            {doneCount === 0 && <span>Desliza para ver cómo se apilan las 3 capas</span>}
-            {doneCount > 0 && doneCount < 3 && <span className="pillars-caption-active">{doneCount} / 3 capas activadas</span>}
-            {doneCount === 3 && <span className="pillars-caption-active" style={{ color: "#4ade80" }}>3 / 3 capas activadas — negocio transformado</span>}
+            {doneCount === 0 && <span>Desliza para ver los {pillars.length} ejes del Bootcamp</span>}
+            {doneCount > 0 && doneCount < pillars.length && <span className="pillars-caption-active">{doneCount} / {pillars.length} ejes activados</span>}
+            {doneCount === pillars.length && <span className="pillars-caption-active" style={{ color: "#4ade80" }}>{pillars.length} / {pillars.length} ejes activados — negocio acelerado</span>}
           </div>
         </div>
 
