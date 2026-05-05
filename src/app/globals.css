@@ -1220,7 +1220,7 @@ h2.section-title {
   border-radius: var(--radius);
   padding: 14px 18px;
   font-family: var(--font-body), sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--white);
   outline: none;
   transition: border-color 0.2s, box-shadow 0.2s;
@@ -1310,7 +1310,7 @@ h2.section-title {
   .details-grid       { grid-template-columns: repeat(2, 1fr); }
   .testimonials-grid  { grid-template-columns: 1fr; }
   .credentials-layout { grid-template-columns: 1fr !important; gap: 40px; }
-  .credentials-photo  { justify-content: flex-start; }
+  .credentials-photo  { justify-content: center; }
   .credentials-portrait { width: 220px; height: 265px; }
   .hero-countdown-num { font-size: 24px; }
   .hero-bubble-free   { font-size: 14px; padding: 8px 16px; }
@@ -1454,7 +1454,7 @@ h2.section-title {
 
 /* ─── CREDENTIALS PORTRAIT ──────────────────────────────── */
 .credentials-layout {
-  grid-template-columns: auto 1fr 1fr !important;
+  grid-template-columns: auto 1fr 1fr;
 }
 .credentials-photo {
   display: flex;
@@ -2997,12 +2997,15 @@ h2.section-title {
   .prizes-grid                { grid-template-columns: repeat(2, 1fr); }
 
   /* Speakers grid — 2 columnas */
-  .speakers-grid              { grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 44px; }
+  .speakers-grid              { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 44px; }
   .scm-name                   { font-size: 12px; }
   .scm-role                   { font-size: 8px; padding: 3px 7px; }
 
   /* Credentials */
-  .credentials-stats          { gap: 20px; }
+  .credentials-photo          { justify-content: center; }
+  .credentials-portrait       { width: min(260px, 80%); height: auto; aspect-ratio: 280 / 340; }
+  .credentials-stats          { gap: 16px; }
+  .cred-stat                  { padding: 18px 20px; gap: 16px; }
   .cred-stat-number           { font-size: 32px; }
   .cred-stat-label            { font-size: 12px; }
 
@@ -3013,7 +3016,7 @@ h2.section-title {
   /* Registration */
   .form-card                  { padding: 28px 20px; }
   .registration h2            { font-size: clamp(26px, 7vw, 34px); }
-  .form-input                 { font-size: 15px; padding: 14px 16px; }
+  .form-input                 { font-size: 16px; padding: 14px 16px; }
   .btn-submit                 { font-size: 14px; padding: 16px; }
 
   /* Footer */
