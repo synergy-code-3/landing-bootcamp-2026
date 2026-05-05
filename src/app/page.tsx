@@ -307,7 +307,104 @@ function PillarsSection() {
   );
 }
 
-// ─── PRIZES · RULETA 3D ────────────────────────────────────
+// ─── RULETA SVG ────────────────────────────────────────────
+function RouletteWheel({ prizes, highlight }: { prizes: typeof content.prizes.items; highlight: number }) {
+  const N = prizes.length * 3; // 9 segmentos (3 premios × 3)
+  const cx = 150, cy = 150, R = 128, hub = 26;
+  const wheelRef = useRef<SVGGElement>(null);
+  const angleRef = useRef(0);
+
+  useEffect(() => {
+    const segCenterDeg = (highlight + 0.5) / N * 360;
+    const baseTarget = -segCenterDeg;
+    let target = baseTarget;
+    while (target <= angleRef.current + 360) target += 360;
+    angleRef.current = target;
+    if (wheelRef.current) {
+      wheelRef.current.style.transition = "transform 1.5s cubic-bezier(0.22, 1, 0.36, 1)";
+      wheelRef.current.style.transform = `rotate(${target}deg)`;
+      wheelRef.current.style.transformOrigin = `${cx}px ${cy}px`;
+    }
+  }, [highlight, N]);
+
+  const segColors = [
+    { bg: "#111", line: "rgba(251,191,36,0.3)" },
+    { bg: "#0c0c0c", line: "rgba(0,224,64,0.2)" },
+  ];
+
+  const segments = Array.from({ length: N }, (_, i) => {
+    const prize = prizes[i % prizes.length];
+    const a1 = (i / N * 360 - 90) * Math.PI / 180;
+    const a2 = ((i + 1) / N * 360 - 90) * Math.PI / 180;
+    const x1o = cx + R * Math.cos(a1), y1o = cy + R * Math.sin(a1);
+    const x2o = cx + R * Math.cos(a2), y2o = cy + R * Math.sin(a2);
+    const x1i = cx + hub * Math.cos(a1), y1i = cy + hub * Math.sin(a1);
+    const x2i = cx + hub * Math.cos(a2), y2i = cy + hub * Math.sin(a2);
+    const d = `M${x1o.toFixed(2)} ${y1o.toFixed(2)} A${R} ${R} 0 0 1 ${x2o.toFixed(2)} ${y2o.toFixed(2)} L${x2i.toFixed(2)} ${y2i.toFixed(2)} A${hub} ${hub} 0 0 0 ${x1i.toFixed(2)} ${y1i.toFixed(2)}Z`;
+    const midA = ((i + 0.5) / N * 360 - 90) * Math.PI / 180;
+    const lr = (R + hub) / 2;
+    const lx = cx + lr * Math.cos(midA);
+    const ly = cy + lr * Math.sin(midA);
+    const textRot = (i + 0.5) / N * 360;
+    const isActive = (i % prizes.length) === highlight;
+    const col = segColors[i % 2];
+    return { d, lx, ly, textRot, prize, isActive, col };
+  });
+
+  return (
+    <div className="ruleta-wrap">
+      <svg viewBox="0 0 300 300" className="ruleta-svg" aria-hidden="true">
+        {/* Anillos decorativos externos */}
+        <circle cx={cx} cy={cy} r={R + 14} fill="none" stroke="rgba(251,191,36,0.15)" strokeWidth="3" />
+        <circle cx={cx} cy={cy} r={R + 8}  fill="none" stroke="rgba(251,191,36,0.25)" strokeWidth="1" strokeDasharray="4 6" />
+
+        <g ref={wheelRef}>
+          {segments.map((seg, i) => (
+            <g key={i}>
+              <path
+                d={seg.d}
+                fill={seg.isActive ? "rgba(0,224,64,0.18)" : seg.col.bg}
+                stroke={seg.isActive ? "rgba(0,224,64,0.5)" : seg.col.line}
+                strokeWidth="1.5"
+              />
+              <text
+                x={seg.lx} y={seg.ly}
+                textAnchor="middle" dominantBaseline="middle"
+                fontSize="18"
+                transform={`rotate(${seg.textRot},${seg.lx},${seg.ly})`}
+              >{seg.prize.icon}</text>
+            </g>
+          ))}
+          {/* Hub central */}
+          <circle cx={cx} cy={cy} r={hub}     fill="#0a0a0a" stroke="rgba(251,191,36,0.5)" strokeWidth="2" />
+          <circle cx={cx} cy={cy} r={hub - 7} fill="#111" />
+          <text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle" fontSize="12" fontWeight="900" fill="rgba(251,191,36,0.8)">$</text>
+        </g>
+
+        {/* Separadores radiales (líneas entre segmentos, fijos) */}
+        {Array.from({ length: N }, (_, i) => {
+          const a = (i / N * 360 - 90) * Math.PI / 180;
+          return (
+            <line key={i}
+              x1={cx + (hub + 1) * Math.cos(a)} y1={cy + (hub + 1) * Math.sin(a)}
+              x2={cx + (R - 1) * Math.cos(a)}   y2={cy + (R - 1) * Math.sin(a)}
+              stroke="rgba(0,0,0,0.6)" strokeWidth="2"
+            />
+          );
+        })}
+
+        {/* Puntero fijo en la parte superior */}
+        <polygon
+          points={`${cx - 9},${cy - R - 10} ${cx + 9},${cy - R - 10} ${cx},${cy - R + 6}`}
+          fill="#fbbf24" stroke="#78350f" strokeWidth="1.5"
+        />
+        <circle cx={cx} cy={cy - R - 10} r="5" fill="#fbbf24" stroke="#78350f" strokeWidth="1" />
+      </svg>
+    </div>
+  );
+}
+
+// ─── PRIZES · SECCIÓN ──────────────────────────────────────
 function PrizesRoulette() {
   const prizes = content.prizes.items;
   const [highlight, setHighlight] = useState(0);
@@ -334,22 +431,8 @@ function PrizesRoulette() {
         </div>
 
         <div className="prize-display reveal reveal-delay-2">
-          {/* Orb */}
-          <div className="prize-orb">
-            <div className="prize-orb-label">Valor total</div>
-            <div className="prize-orb-amount">+$10,000</div>
-            <div className="prize-orb-currency">USD</div>
-          </div>
-
-          {/* Cards */}
-          <div className="prize-cards">
-            {prizes.map((p, i) => (
-              <div key={i} className={`prize-card ${highlight === i ? "active" : ""}`}>
-                <div className="prize-card-icon" aria-hidden="true">{p.icon}</div>
-                <div className="prize-card-title">{p.title}</div>
-              </div>
-            ))}
-          </div>
+          {/* Ruleta */}
+          <RouletteWheel prizes={prizes} highlight={highlight} />
 
           {/* Sorteando ahora */}
           <div className="prize-legend">
