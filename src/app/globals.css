@@ -1931,6 +1931,31 @@ h2.section-title {
   white-space: nowrap;
 }
 
+/* Acelerar — elemento comunicativo (no numerado) */
+.pillars-acelerar-intro {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 0 0 28px;
+}
+.pillars-acelerar-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,224,64,0.3), transparent);
+}
+.pillars-acelerar-word {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #00e040;
+  padding: 6px 18px;
+  border: 1px solid rgba(0,224,64,0.35);
+  border-radius: 999px;
+  background: rgba(0,224,64,0.06);
+}
+
 .pillars-scene {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

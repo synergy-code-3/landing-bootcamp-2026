@@ -248,6 +248,12 @@ function PillarsSection() {
         </div>
 
         <div className="pillars-stage" ref={stageRef}>
+          <div className="pillars-acelerar-intro" aria-hidden="true">
+            <div className="pillars-acelerar-line" />
+            <span className="pillars-acelerar-word">Acelerar</span>
+            <div className="pillars-acelerar-line" />
+          </div>
+
           <div className="pillars-scene">
             {pillars.map((p, i) => {
               const isOn = visible[i];
