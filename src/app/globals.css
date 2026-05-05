@@ -3301,3 +3301,107 @@ h2.section-title {
   0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
   50%       { transform: translateY(-18px) rotate(12deg); opacity: 1; }
 }
+
+/* ─── PHONE COUNTRY INPUT ────────────────────────────────── */
+.phone-field {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
+  overflow: visible;
+  transition: border-color 0.2s;
+}
+.phone-field:focus-within {
+  border-color: rgba(0,224,64,0.5);
+  background: rgba(255,255,255,0.08);
+}
+.phone-flag-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  cursor: pointer;
+  color: #fff;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  border-radius: 10px 0 0 10px;
+  min-width: 88px;
+}
+.phone-flag-btn:hover { background: rgba(255,255,255,0.06); }
+.phone-flag-emoji { font-size: 20px; line-height: 1; }
+.phone-dial { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.85); letter-spacing: 0.01em; }
+.phone-chevron { color: rgba(255,255,255,0.4); flex-shrink: 0; transition: transform 0.2s; }
+.phone-flag-btn.open .phone-chevron { transform: rotate(180deg); }
+.phone-number-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 14px 16px;
+  font-size: 16px;
+  color: #fff;
+  font-family: inherit;
+  min-width: 0;
+}
+.phone-number-input::placeholder { color: rgba(255,255,255,0.3); }
+
+/* Dropdown */
+.phone-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 280px;
+  background: #1a1a1a;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.6);
+  z-index: 200;
+  overflow: hidden;
+}
+.phone-search-wrap {
+  padding: 10px 10px 6px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.phone-search {
+  width: 100%;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 7px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #fff;
+  font-family: inherit;
+  outline: none;
+  box-sizing: border-box;
+}
+.phone-search::placeholder { color: rgba(255,255,255,0.3); }
+.phone-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px 0;
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.1) transparent;
+}
+.phone-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 14px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+}
+.phone-option:hover { background: rgba(255,255,255,0.06); }
+.phone-option.active { background: rgba(0,224,64,0.08); }
+.phone-option-name { flex: 1; font-size: 13px; color: rgba(255,255,255,0.85); }
+.phone-option-dial { font-size: 12px; color: rgba(255,255,255,0.4); font-weight: 600; }

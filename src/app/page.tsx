@@ -869,6 +869,128 @@ function WhatsAppTakeover({ nombre }: { nombre: string }) {
   );
 }
 
+// ─── PHONE COUNTRY INPUT ───────────────────────────────────
+const PHONE_COUNTRIES = [
+  { name: "México",              flag: "🇲🇽", dial: "+52"  },
+  { name: "Colombia",            flag: "🇨🇴", dial: "+57"  },
+  { name: "Argentina",           flag: "🇦🇷", dial: "+54"  },
+  { name: "Chile",               flag: "🇨🇱", dial: "+56"  },
+  { name: "Perú",                flag: "🇵🇪", dial: "+51"  },
+  { name: "Venezuela",           flag: "🇻🇪", dial: "+58"  },
+  { name: "Ecuador",             flag: "🇪🇨", dial: "+593" },
+  { name: "Guatemala",           flag: "🇬🇹", dial: "+502" },
+  { name: "Bolivia",             flag: "🇧🇴", dial: "+591" },
+  { name: "Rep. Dominicana",     flag: "🇩🇴", dial: "+1"   },
+  { name: "Honduras",            flag: "🇭🇳", dial: "+504" },
+  { name: "El Salvador",         flag: "🇸🇻", dial: "+503" },
+  { name: "Costa Rica",          flag: "🇨🇷", dial: "+506" },
+  { name: "Panamá",              flag: "🇵🇦", dial: "+507" },
+  { name: "Uruguay",             flag: "🇺🇾", dial: "+598" },
+  { name: "Paraguay",            flag: "🇵🇾", dial: "+595" },
+  { name: "Nicaragua",           flag: "🇳🇮", dial: "+505" },
+  { name: "Estados Unidos",      flag: "🇺🇸", dial: "+1"   },
+  { name: "España",              flag: "🇪🇸", dial: "+34"  },
+  { name: "Canadá",              flag: "🇨🇦", dial: "+1"   },
+  { name: "Otro",                flag: "🌍",  dial: "+"    },
+];
+
+type PhoneCountry = typeof PHONE_COUNTRIES[number];
+
+function PhoneCountryInput({
+  value, onChange, onCountryChange, placeholder,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  onCountryChange: (c: PhoneCountry) => void;
+  placeholder?: string;
+}) {
+  const [selected, setSelected] = useState<PhoneCountry>(PHONE_COUNTRIES[0]);
+  const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const wrapRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (wrapRef.current && !wrapRef.current.contains(e.target as Node)) {
+        setOpen(false);
+        setSearch("");
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
+
+  function select(c: PhoneCountry) {
+    setSelected(c);
+    onCountryChange(c);
+    setOpen(false);
+    setSearch("");
+  }
+
+  const filtered = search
+    ? PHONE_COUNTRIES.filter((c) =>
+        c.name.toLowerCase().includes(search.toLowerCase()) ||
+        c.dial.includes(search)
+      )
+    : PHONE_COUNTRIES;
+
+  return (
+    <div className="phone-field" ref={wrapRef}>
+      <button
+        type="button"
+        className={`phone-flag-btn ${open ? "open" : ""}`}
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Seleccionar país"
+      >
+        <span className="phone-flag-emoji">{selected.flag}</span>
+        <span className="phone-dial">{selected.dial}</span>
+        <svg className="phone-chevron" width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      </button>
+      <input
+        className="phone-number-input"
+        type="tel"
+        name="whatsapp"
+        id="whatsapp"
+        placeholder={placeholder ?? "55 1234 5678"}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        required
+      />
+      {open && (
+        <div className="phone-dropdown">
+          <div className="phone-search-wrap">
+            <input
+              className="phone-search"
+              type="text"
+              placeholder="Buscar país..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              autoFocus
+            />
+          </div>
+          <ul className="phone-list">
+            {filtered.map((c) => (
+              <li key={c.name}>
+                <button
+                  type="button"
+                  className={`phone-option ${c.name === selected.name ? "active" : ""}`}
+                  onClick={() => select(c)}
+                >
+                  <span className="phone-flag-emoji">{c.flag}</span>
+                  <span className="phone-option-name">{c.name}</span>
+                  <span className="phone-option-dial">{c.dial}</span>
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function Page() {
   useReveal();
   useTracker();
@@ -876,6 +998,8 @@ export default function Page() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [registeredName, setRegisteredName] = useState("");
+  const [phoneVal, setPhoneVal] = useState("");
+  const [phoneCountry, setPhoneCountry] = useState<PhoneCountry>(PHONE_COUNTRIES[0]);
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -888,8 +1012,8 @@ export default function Page() {
     const payload = {
       nombre:       (form.elements.namedItem("name")     as HTMLInputElement).value,
       email:        (form.elements.namedItem("email")    as HTMLInputElement).value,
-      telefono:     (form.elements.namedItem("whatsapp") as HTMLInputElement).value,
-      pais:         (form.elements.namedItem("country")  as HTMLSelectElement).value,
+      telefono:     `${phoneCountry.dial} ${phoneVal}`.trim(),
+      pais:         phoneCountry.name,
       utm_source:   params.get("utm_source")   ?? "",
       utm_medium:   params.get("utm_medium")   ?? "",
       utm_campaign: params.get("utm_campaign") ?? "",
@@ -1299,18 +1423,14 @@ export default function Page() {
                   <label className="form-label" htmlFor="email">{content.registration.form.email_label}</label>
                   <input className="form-input" type="email" id="email" name="email" placeholder={content.registration.form.email_placeholder} required />
                 </div>
-                <div className="form-row">
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" htmlFor="whatsapp">{content.registration.form.whatsapp_label}</label>
-                    <input className="form-input" type="tel" id="whatsapp" name="whatsapp" placeholder={content.registration.form.whatsapp_placeholder} required />
-                  </div>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label className="form-label" htmlFor="country">{content.registration.form.country_label}</label>
-                    <select className="form-input" id="country" name="country" required style={{ appearance: "none", cursor: "pointer" }}>
-                      <option value="" disabled>{content.registration.form.country_placeholder}</option>
-                      {countries.map((c) => <option key={c}>{c}</option>)}
-                    </select>
-                  </div>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="whatsapp">{content.registration.form.whatsapp_label}</label>
+                  <PhoneCountryInput
+                    value={phoneVal}
+                    onChange={setPhoneVal}
+                    onCountryChange={setPhoneCountry}
+                    placeholder={content.registration.form.whatsapp_placeholder}
+                  />
                 </div>
                 <button type="submit" className="btn-submit" disabled={loading} data-track="registration_submit">
                   {loading ? content.registration.form.cta_loading : (
