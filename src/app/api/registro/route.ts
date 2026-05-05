@@ -25,12 +25,15 @@ async function upsertGHL(payload: {
   const [firstName, ...rest] = payload.nombre.trim().split(" ");
   const lastName = rest.join(" ") || "";
 
+  // E.164: conservar el + inicial y eliminar todo lo que no sea dígito
+  const phone = payload.telefono.replace(/(?!^\+)[^\d]/g, "");
+
   const body = {
     locationId: GHL_LOC,
     firstName,
     lastName,
     email:      payload.email,
-    phone:      payload.telefono,
+    phone,
     country:    payload.ip_country || payload.pais,
     city:       payload.ip_city,
     state:      payload.ip_region,
