@@ -453,11 +453,8 @@ export const content = {
       "Los resultados y testimonios mostrados no representan una garantía. Los resultados dependen del esfuerzo, experiencia y compromiso de cada participante.",
     ],
     links: [
-      { label: "Política de Privacidad", href: "/privacidad" },
+      { label: "Aviso de Privacidad",    href: "/privacidad" },
       { label: "Términos y Condiciones", href: "/terminos" },
-      { label: "Política de Cookies",    href: "/cookies" },
-      { label: "Eliminar mis datos",     href: "/eliminar-datos" },
-      { label: "Contacto",               href: "mailto:hola@synergyforeducation.mx" },
     ],
     contact: {
       email:   "hola@synergyforeducation.mx",
