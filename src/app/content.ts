@@ -6,7 +6,7 @@ export interface Speaker {
   role?:     string | null;     // "Host", "Co-host" o null
   title:     string;            // bio corta (quién es)
   topic:     string;            // de qué va a hablar en el Bootcamp
-  pillar?:   "Acelerar" | "Entorno y Relaciones" | "Ventas y Utilidad" | "Mentalidad y Decisiones";
+  pillar?:   "Entorno y Relaciones" | "Ventas y Utilidad" | "Mentalidad y Decisiones";
   ig?:       string;            // handle sin @
   photo?:    string;            // ruta a /public/speakers/<handle>.jpg (fallback a iniciales)
   featured?: boolean;
@@ -144,28 +144,15 @@ export const content = {
     live_badge: "SOLO EN VIVO · Sin grabación",
   },
 
-  // ─── 4 EJES DEL BOOTCAMP ─────────────────────────────────────────────────
+  // ─── 3 PILARES DEL MÉTODO ACELERAR ──────────────────────────────────────
   pillars: {
-    label:    "Los 4 ejes del Bootcamp",
-    title_1:  "Todo se mueve cuando",
-    title_em: "los 4 ejes operan",
-    subtitle: "No son temas aislados. Son los 4 ejes que transforman tu negocio al mismo tiempo. Ninguno funciona solo.",
+    label:    "Método Acelerar",
+    title_1:  "3 ejes que transforman",
+    title_em: "tu negocio",
+    subtitle: "No son temas aislados. Son los 3 ejes que se mueven en paralelo. Ninguno funciona solo — los 3 juntos cambian el juego.",
     items: [
       {
         n: "01",
-        tag: "Acelerar",
-        title: "El método central",
-        headline: "No es trabajar más — es mover los 4 ejes al mismo tiempo.",
-        body: "Acelerar es el sistema central del Bootcamp. En 3 días intensivos instalas el método completo que mueve entorno, ventas y mentalidad en paralelo. No hay atajos — pero sí hay un orden.",
-        bullets: [
-          "De lineal a exponencial",
-          "Los 4 ejes trabajados en simultáneo",
-          "72 horas = punto de quiebre real",
-        ],
-        color: "#00e040",
-      },
-      {
-        n: "02",
         tag: "Tu entorno y relaciones",
         title: "Cambia tu ecosistema",
         headline: "Tu próximo nivel depende de tu siguiente círculo.",
@@ -178,7 +165,7 @@ export const content = {
         color: "#fbbf24",
       },
       {
-        n: "03",
+        n: "02",
         tag: "Tus ventas y utilidad",
         title: "Más ingresos, mejor margen",
         headline: "Cobrar más. A más personas. Con más recurrencia.",
@@ -191,7 +178,7 @@ export const content = {
         color: "#4ade80",
       },
       {
-        n: "04",
+        n: "03",
         tag: "Tu mentalidad y toma de decisiones",
         title: "Piensa como empresario",
         headline: "El techo de tu negocio está en tu cabeza — hasta que lo rompes.",
@@ -205,9 +192,9 @@ export const content = {
       },
     ],
     synthesis: {
-      title: "Los 4 ejes =",
+      title: "Los 3 ejes =",
       result: "negocio acelerado",
-      caption: "Acelerar + Entorno + Ventas + Mentalidad. Cuando los 4 ejes operan al mismo tiempo, el negocio deja de ser lineal y empieza a escalar.",
+      caption: "Entorno + Ventas + Mentalidad. Cuando los 3 ejes operan al mismo tiempo, el negocio deja de ser lineal y empieza a escalar.",
     },
   },
 
@@ -291,7 +278,7 @@ export const content = {
     list: [
       { name: "Jorge Serratos",     role: "Host",     title: "CEO Grupo Serlo · Doctor en derecho · Podcast Sinergéticos #1 Negocios México · +11M seguidores",
         topic: "Cómo construir un movimiento, no solo un negocio",
-        pillar: "Acelerar", featured: true, ig: "jorgeserratos", photo: "/speakers/jorgeserratos.webp", initial: "J", bg: "linear-gradient(135deg,#00e040,#005a18)" },
+        featured: true, ig: "jorgeserratos", photo: "/speakers/jorgeserratos.webp", initial: "J", bg: "linear-gradient(135deg,#00e040,#005a18)" },
 
       { name: "Manuel de León",     role: "Co-host",  title: "COO Sinergéticos · Experto en IA, tráfico y contenido digital",
         topic: "IA + tráfico + contenido: el stack técnico del crecimiento en 2026",

@@ -248,47 +248,13 @@ function PillarsSection() {
         </div>
 
         <div className="pillars-stage" ref={stageRef}>
-          {/* Pilar maestro — Acelerar */}
-          {(() => { const p = pillars[0]; const isOn = visible[0]; return (
-            <div
-              data-idx={0}
-              className={`pillar-card pillar-master ${isOn ? "visible" : ""}`}
-              style={{ "--pillar-color": p.color, "--pillar-delay": "0s" } as React.CSSProperties}
-            >
-              <div className="pillar-card-glow" />
-              <div className="pillar-master-left">
-                <div className="pillar-num">{p.n}</div>
-                <div className="pillar-tag">{p.tag}</div>
-                <h3 className="pillar-title">{p.title}</h3>
-                <p className="pillar-headline">{p.headline}</p>
-              </div>
-              <div className="pillar-master-right">
-                <p className="pillar-body">{p.body}</p>
-                <ul className="pillar-bullets">
-                  {p.bullets.map((b) => (
-                    <li key={b}><span className="pillar-check"><CheckCircle /></span>{b}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          );})()}
-
-          {/* Divisor hacia sub-pilares */}
-          <div className="pillars-sub-divider" aria-hidden="true">
-            <div className="pillars-sub-divider-line" />
-            <span className="pillars-sub-divider-label">Los 3 pilares de la aceleración</span>
-            <div className="pillars-sub-divider-line" />
-          </div>
-
-          {/* Sub-pilares */}
           <div className="pillars-scene">
-            {pillars.slice(1).map((p, i) => {
-              const idx = i + 1;
-              const isOn = visible[idx];
+            {pillars.map((p, i) => {
+              const isOn = visible[i];
               return (
                 <div
                   key={p.n}
-                  data-idx={idx}
+                  data-idx={i}
                   className={`pillar-card ${isOn ? "visible" : ""}`}
                   style={{ "--pillar-color": p.color, "--pillar-delay": `${i * 0.12}s` } as React.CSSProperties}
                 >
