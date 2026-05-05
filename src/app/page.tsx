@@ -883,36 +883,42 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ─── HOST (Jorge) ────────────────────────────────── */}
+      {/* ─── HOSTS (Jorge + Manuel) ──────────────────────── */}
       <section className="credentials section" data-section="host">
         <div className="credentials-inner container">
-          <div className="credentials-layout">
-            <div className="credentials-photo reveal">
-              <NextImage
-                src={content.credentials.photo}
-                alt="Jorge Serratos"
-                className="credentials-portrait"
-                width={280}
-                height={340}
-                priority
-                sizes="(max-width: 640px) min(260px, 80vw), 280px"
-              />
-            </div>
-            <div className="credentials-text reveal reveal-delay-1">
-              <div className="host-badge">{content.credentials.host_badge}</div>
-              <h2>{content.credentials.name_1} <span className="text-red">{content.credentials.name_em}</span></h2>
-              {content.credentials.bio.split("\n\n").map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
-            </div>
-            <div className="credentials-stats">
-              {content.credentials.stats.map((s, i) => (
-                <div key={i} className={`cred-stat reveal reveal-delay-${i + 1}`}>
-                  <div className="cred-stat-number">{s.number}</div>
-                  <div className="cred-stat-label">{s.label}</div>
+          <div className="credentials-hosts">
+            {content.credentials.hosts.map((host) => (
+              <div key={host.name_1} className="credentials-host-block">
+                <div className="credentials-layout">
+                  <div className="credentials-photo reveal">
+                    <NextImage
+                      src={host.photo}
+                      alt={`${host.name_1} ${host.name_em}`}
+                      className="credentials-portrait"
+                      width={280}
+                      height={340}
+                      priority
+                      sizes="(max-width: 640px) min(260px, 80vw), 280px"
+                    />
+                  </div>
+                  <div className="credentials-text reveal reveal-delay-1">
+                    <div className="host-badge">{host.badge}</div>
+                    <h2>{host.name_1} <span className="text-red">{host.name_em}</span></h2>
+                    {host.bio.split("\n\n").map((para, i) => (
+                      <p key={i}>{para}</p>
+                    ))}
+                  </div>
                 </div>
-              ))}
-            </div>
+                <div className="credentials-stats">
+                  {host.stats.map((s, i) => (
+                    <div key={i} className={`cred-stat reveal reveal-delay-${i + 1}`}>
+                      <div className="cred-stat-number">{s.number}</div>
+                      <div className="cred-stat-label">{s.label}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

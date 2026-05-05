@@ -350,17 +350,33 @@ export const content = {
     featured_role:   "",
   },
 
-  // ─── CREDENCIALES (Jorge) ─────────────────────────────────────────────────
+  // ─── CREDENCIALES (Hosts) ─────────────────────────────────────────────────
   credentials: {
-    host_badge: "Host del Bootcamp",
-    name_1:     "Jorge",
-    name_em:    "Serratos",
-    photo:      "/speakers/jorgeserratos.webp",
-    bio:        "Hace 4 años era un abogado con un negocio exitoso pero topado: ingresos atados 100% a su presencia, sin margen para crecer. Llegó al límite y tomó la decisión de escalar.\n\nEscaló. Hoy dirige Grupo Serlo —6 empresas— y es el host de Sinergéticos, el podcast de negocios #1 en México con +11M de seguidores. Su filosofía: \"1+1=3\".",
-    stats: [
-      { number: "+11M",      label: "seguidores en todas sus plataformas" },
-      { number: "+20,000",   label: "emprendedores que ya convirtieron su conocimiento en un negocio digital rentable" },
-      { number: "209M",      label: "personas de alcance · Podcast Sinergéticos #1 Negocios México · +100k calificaciones" },
+    hosts: [
+      {
+        badge:  "Host del Bootcamp",
+        name_1: "Jorge",
+        name_em: "Serratos",
+        photo:  "/speakers/jorgeserratos.webp",
+        bio:    "Hace 4 años era un abogado con un negocio exitoso pero topado: ingresos atados 100% a su presencia, sin margen para crecer. Llegó al límite y tomó la decisión de escalar.\n\nEscaló. Hoy dirige Grupo Serlo —6 empresas— y es el host de Sinergéticos, el podcast de negocios #1 en México con +11M de seguidores. Su filosofía: \"1+1=3\".",
+        stats: [
+          { number: "+11M",    label: "seguidores en todas sus plataformas" },
+          { number: "+20,000", label: "emprendedores que ya convirtieron su conocimiento en un negocio digital rentable" },
+          { number: "209M",    label: "personas de alcance · Podcast Sinergéticos #1 Negocios México · +100k calificaciones" },
+        ],
+      },
+      {
+        badge:  "Co-host del Bootcamp",
+        name_1: "Manuel",
+        name_em: "de León",
+        photo:  "/speakers/manueldeleon.webp",
+        bio:    "El arquitecto del stack digital de Sinergéticos. Lleva años convirtiendo visión en sistemas: IA, tráfico pagado y contenido que generan audiencias y clientes a escala.\n\nCOO de Sinergéticos y la mente detrás del crecimiento técnico que llevó el podcast al #1 en México. Su filosofía: la tecnología trabaja para ti — o tú trabajas para ella.",
+        stats: [
+          { number: "COO",     label: "Sinergéticos · el podcast de negocios #1 en México" },
+          { number: "+11M",    label: "personas alcanzadas con la estrategia de IA y contenido que diseña y opera" },
+          { number: "IA · Tráfico · Contenido", label: "el stack técnico del crecimiento que enseña en el Bootcamp 2026" },
+        ],
+      },
     ],
   },
 

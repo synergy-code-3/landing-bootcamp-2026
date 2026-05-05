@@ -1107,6 +1107,12 @@ h2.section-title {
   margin-bottom: 20px;
 }
 .credentials-text p { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75; }
+.credentials-hosts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+}
+.credentials-host-block { display: flex; flex-direction: column; gap: 32px; }
 .credentials-stats { display: flex; flex-direction: column; gap: 20px; }
 .cred-stat {
   background: var(--gray-800);
@@ -1309,6 +1315,7 @@ h2.section-title {
   .promises-grid      { grid-template-columns: 1fr; }
   .details-grid       { grid-template-columns: repeat(2, 1fr); }
   .testimonials-grid  { grid-template-columns: 1fr; }
+  .credentials-hosts  { grid-template-columns: 1fr; }
   .credentials-layout { grid-template-columns: 1fr !important; gap: 40px; }
   .credentials-photo  { justify-content: center; }
   .credentials-portrait { width: 220px; height: 265px; }
@@ -1454,7 +1461,7 @@ h2.section-title {
 
 /* ─── CREDENTIALS PORTRAIT ──────────────────────────────── */
 .credentials-layout {
-  grid-template-columns: auto 1fr 1fr;
+  grid-template-columns: auto 1fr;
 }
 .credentials-photo {
   display: flex;
