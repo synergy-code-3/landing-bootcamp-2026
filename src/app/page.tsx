@@ -370,7 +370,7 @@ function RouletteWheel({ prizes, highlight }: { prizes: typeof content.prizes.it
               <text
                 x={seg.lx} y={seg.ly}
                 textAnchor="middle" dominantBaseline="middle"
-                fontSize="24"
+                fontSize="16"
                 transform={`rotate(${seg.textRot},${seg.lx},${seg.ly})`}
               >{seg.prize.icon}</text>
             </g>
