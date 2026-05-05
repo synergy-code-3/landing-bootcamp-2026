@@ -100,16 +100,16 @@ export const content = {
     ],
     quote: "Lo que hoy te limita, en 3 días puede dejar de existir.",
     callout_title: "El Bootcamp es el punto de quiebre.",
-    callout_body:  "No otro curso. No otra motivación. Tres días en vivo — sin grabación, sin repetición — donde aceleras tus ventas, transformas tu entorno y reprogramas tu mentalidad al mismo tiempo.",
+    callout_body:  "No otro curso. No otra motivación. Tres días en vivo — sin grabación, sin repetición — donde los 3 ejes del método Acelerar operan en paralelo: tu mentalidad, tus ventas y tu entorno.",
     journey: {
       eyebrow: "Así funciona el Bootcamp",
-      title:   "3 días de enfoque = Una vida y un negocio que escale",
+      title:   "3 días. 3 ejes. Un negocio que escala.",
       steps: [
-        { day: "Día 1", tag: "Mentalidad y Decisiones", title: "Rompe el techo invisible",  body: "Descubrirás el patrón mental que bloquea tu crecimiento y lo cambiarás por la mentalidad del empresario que opera a otro nivel." },
-        { day: "Día 2", tag: "Ventas y Utilidad",      title: "Acelera tus ingresos",      body: "Aprende a cobrar más, atraer más clientes y generar ingresos recurrentes. Las 3 palancas del crecimiento." },
-        { day: "Día 3", tag: "Entorno y Relaciones",   title: "Expande tu círculo cercano", body: "Aprenderás a conectar con mentores y empresarios que te darán el círculo que tu negocio necesita para escalar." },
+        { day: "Día 1", tag: "Tu mentalidad y toma de decisiones", title: "Rompe el techo invisible",  body: "Identificarás el patrón mental que hoy limita tu crecimiento y lo cambiarás por el sistema operativo del empresario: decisiones por ROI, delegación real y margen sobre esfuerzo." },
+        { day: "Día 2", tag: "Tus ventas y utilidad",              title: "Más ingresos, mejor margen", body: "Las 3 palancas en acción: precio, volumen y recurrencia. Aprenderás a posicionarte premium, atraer clientes en automático y convertir compras únicas en ingresos recurrentes." },
+        { day: "Día 3", tag: "Tu entorno y relaciones",            title: "Cambia tu ecosistema",       body: "Tu próximo nivel depende de tu siguiente círculo. Conectarás con +20 speakers y miles de emprendedores que ya operan al nivel al que tú quieres llegar." },
       ],
-      result: "Saldrás con un plan estratégico para escalar a niveles que parecían imposibles.",
+      result: "Saldrás con los 3 ejes moviéndose en paralelo — eso es lo que hace la diferencia entre crecer y escalar.",
     },
   },
 
