@@ -895,10 +895,10 @@ export default function Page() {
                       src={host.photo}
                       alt={`${host.name_1} ${host.name_em}`}
                       className="credentials-portrait"
-                      width={280}
-                      height={340}
+                      width={180}
+                      height={220}
                       priority
-                      sizes="(max-width: 640px) min(260px, 80vw), 280px"
+                      sizes="(max-width: 640px) min(160px, 45vw), 180px"
                     />
                   </div>
                   <div className="credentials-text reveal reveal-delay-1">
