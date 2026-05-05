@@ -788,12 +788,94 @@ function SpeakerCard({ s }: { s: Speaker }) {
 }
 
 // ─── PAGE ──────────────────────────────────────────────────
+const WA_LINK = "https://group.wha.link/eg7v9e";
+
+function WhatsAppTakeover({ nombre }: { nombre: string }) {
+  const [secs, setSecs] = useState(5);
+  const opened = useRef(false);
+
+  useEffect(() => {
+    const t = setInterval(() => {
+      setSecs((s) => {
+        if (s <= 1) {
+          clearInterval(t);
+          if (!opened.current) { opened.current = true; window.open(WA_LINK, "_blank"); }
+          return 0;
+        }
+        return s - 1;
+      });
+    }, 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  return (
+    <div className="wa-takeover">
+      <div className="wa-takeover-inner">
+        <div className="wa-confetti" aria-hidden="true">
+          {["🎉","✨","🚀","💪","🔥"].map((e, i) => (
+            <span key={i} className="wa-confetti-piece" style={{ "--i": i } as React.CSSProperties}>{e}</span>
+          ))}
+        </div>
+
+        <div className="wa-check">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#00e040" strokeWidth="2.5">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+
+        <h1 className="wa-title">
+          {nombre ? `¡Listo, ${nombre}!` : "¡Registro exitoso!"}
+        </h1>
+        <p className="wa-subtitle">Tu lugar en el Bootcamp está confirmado.</p>
+
+        <div className="wa-card">
+          <div className="wa-card-top">
+            <svg className="wa-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="16" fill="#25D366"/>
+              <path d="M23.5 8.5C21.7 6.7 19.4 5.7 17 5.7c-4.9 0-8.8 3.9-8.8 8.8 0 1.6.4 3.1 1.2 4.4L8 24.3l5.5-1.4c1.3.7 2.7 1.1 4.2 1.1h.1c4.9 0 8.8-3.9 8.8-8.8-.1-2.4-1.1-4.6-2.8-6.3zm-6.5 13.5h-.1c-1.3 0-2.6-.4-3.7-1l-.3-.2-2.8.7.7-2.7-.2-.3c-.7-1.1-1.1-2.4-1.1-3.7 0-3.9 3.2-7.1 7.1-7.1 1.9 0 3.7.7 5 2.1s2.1 3.1 2.1 5c0 3.9-3.2 7.2-7 7.2zm3.9-5.3c-.2-.1-1.3-.6-1.4-.7-.2-.1-.3-.1-.4.1l-.6.7c-.1.1-.2.1-.4 0-.2-.1-.9-.3-1.7-1.1-.6-.6-1-1.3-1.1-1.5-.1-.2 0-.3.1-.4l.3-.3c.1-.1.1-.2.2-.3 0-.1 0-.2-.1-.3l-.6-1.5c-.2-.4-.3-.4-.5-.4h-.4c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2 1 2.4c.1.2 1.7 2.6 4.1 3.6.6.2 1 .4 1.3.5.6.2 1.1.1 1.5.1.4-.1 1.3-.5 1.5-1.1.2-.5.2-1 .1-1.1-.1-.1-.2-.2-.4-.3z" fill="white"/>
+            </svg>
+            <div className="wa-card-label">
+              <span className="wa-card-label-main">Grupo de WhatsApp</span>
+              <span className="wa-card-label-sub">Bootcamp 2026 · Comunidad oficial</span>
+            </div>
+          </div>
+          <p className="wa-card-body">
+            Aquí recibirás el link de acceso al evento, recordatorios y estarás conectado con los demás participantes. <strong>Sin esto, puedes perderte el link el día del evento.</strong>
+          </p>
+
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="wa-btn"
+            onClick={() => { opened.current = true; }}
+          >
+            <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+              <path d="M23.5 8.5C21.7 6.7 19.4 5.7 17 5.7c-4.9 0-8.8 3.9-8.8 8.8 0 1.6.4 3.1 1.2 4.4L8 24.3l5.5-1.4c1.3.7 2.7 1.1 4.2 1.1h.1c4.9 0 8.8-3.9 8.8-8.8-.1-2.4-1.1-4.6-2.8-6.3z" fill="white"/>
+            </svg>
+            Unirme al grupo ahora
+          </a>
+
+          {secs > 0 && (
+            <p className="wa-countdown">Abriendo automáticamente en <strong>{secs}s</strong>…</p>
+          )}
+        </div>
+
+        <p className="wa-footnote">
+          Ya tienes tu lugar asegurado. El grupo es donde pasa todo antes, durante y después del evento.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 export default function Page() {
   useReveal();
   useTracker();
   const countdown = useCountdown(content.hero.countdown_target);
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [registeredName, setRegisteredName] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -829,6 +911,7 @@ export default function Page() {
       getTracker()?.conversion({ email: payload.email, country: payload.pais });
     } catch { /* noop */ }
 
+    setRegisteredName(payload.nombre.split(" ")[0]);
     setSubmitted(true);
     setLoading(false);
   }
@@ -860,6 +943,8 @@ export default function Page() {
     () => dbSpeakers ?? content.speakers.list,
     [dbSpeakers]
   );
+
+  if (submitted) return <WhatsAppTakeover nombre={registeredName} />;
 
   return (
     <>

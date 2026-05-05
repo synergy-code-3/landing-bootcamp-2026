@@ -3172,3 +3172,132 @@ h2.section-title {
     animation: none !important;
   }
 }
+
+/* ─── WHATSAPP TAKEOVER ──────────────────────────────────── */
+.wa-takeover {
+  position: fixed;
+  inset: 0;
+  background: #020e07;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 9999;
+  overflow-y: auto;
+}
+.wa-takeover-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 520px;
+  width: 100%;
+  gap: 20px;
+  position: relative;
+}
+.wa-check {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: rgba(0,224,64,0.12);
+  border: 2px solid rgba(0,224,64,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wa-title {
+  font-family: var(--font-poppins), sans-serif;
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.15;
+  margin: 0;
+}
+.wa-subtitle {
+  font-size: 18px;
+  color: rgba(255,255,255,0.6);
+  margin: 0;
+}
+.wa-card {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(37,211,102,0.25);
+  border-radius: 20px;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+.wa-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.wa-icon { width: 44px; height: 44px; flex-shrink: 0; }
+.wa-card-label { display: flex; flex-direction: column; text-align: left; }
+.wa-card-label-main {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+.wa-card-label-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+}
+.wa-card-body {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+  text-align: left;
+  margin: 0;
+}
+.wa-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: #25D366;
+  color: #fff;
+  font-family: var(--font-poppins), sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  padding: 16px 28px;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  margin-top: 4px;
+}
+.wa-btn:hover { background: #1db954; transform: translateY(-1px); }
+.wa-btn:active { transform: translateY(0); }
+.wa-countdown {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  margin: 0;
+}
+.wa-footnote {
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  max-width: 400px;
+  line-height: 1.5;
+  margin: 0;
+}
+/* Confetti flotante */
+.wa-confetti {
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+.wa-confetti-piece {
+  position: absolute;
+  font-size: 22px;
+  animation: wa-float 3s ease-in-out infinite;
+  animation-delay: calc(var(--i) * 0.5s);
+  left: calc(var(--i) * 48px - 96px);
+}
+@keyframes wa-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  50%       { transform: translateY(-18px) rotate(12deg); opacity: 1; }
+}
