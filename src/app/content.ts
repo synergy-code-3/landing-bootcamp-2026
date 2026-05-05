@@ -322,6 +322,11 @@ export const content = {
         pillar: "Mentalidad y Decisiones", ig: "memo_serrano_d",
         initial: "M", bg: "linear-gradient(135deg,#a855f7,#581c87)", photo: "/speakers/memoserrano.webp" },
 
+      { name: "Ricardo Perret",     title: "Conferencista internacional · Autor de 11 libros · +1,200 conferencias en 20 países · Fundador La Montaña",
+        topic: "El gen exitoso: los hábitos y la mentalidad que separan a los que escalan de los que se estancan",
+        pillar: "Mentalidad y Decisiones", ig: "ricardo.perret",
+        initial: "R", bg: "linear-gradient(135deg,#0ea5e9,#0c4a6e)", photo: "/speakers/ricardoperret.webp" },
+
       { name: "Regina Carrot",      title: "+14M seguidores · TEDx Speaker · Fundadora Speaker Magnética · Forbes · Ex Pepsico",
         topic: "Cómo construir una audiencia millonaria y monetizar tu mensaje",
         pillar: "Ventas y Utilidad", ig: "reginacarrot",
