@@ -169,6 +169,11 @@ function WhatIsBootcamp() {
           </p>
           <p className="whatis-closing-foot">{content.whatIs.closing_foot}</p>
         </div>
+        <div className="section-cta reveal">
+          <a href="#registro" className="btn-primary" data-track="whatis_cta">
+            Reservar mi acceso gratuito <ArrowRight />
+          </a>
+        </div>
       </div>
     </section>
   );
@@ -993,6 +998,11 @@ export default function Page() {
             ))}
           </div>
         </div>
+        <div className="section-cta reveal">
+          <a href="#registro" className="btn-primary" data-track="credentials_cta">
+            Quiero estar en el Bootcamp <ArrowRight />
+          </a>
+        </div>
       </section>
 
       {/* ─── PROBLEM ─────────────────────────────────────── */}
@@ -1049,6 +1059,11 @@ export default function Page() {
               </div>
             </div>
           </div>
+          <div className="section-cta reveal">
+            <a href="#registro" className="btn-primary" data-track="problem_cta">
+              Quiero romper ese techo <ArrowRight />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1077,6 +1092,11 @@ export default function Page() {
               </div>
             ))}
           </div>
+          <div className="section-cta reveal">
+            <a href="#registro" className="btn-primary" data-track="details_cta">
+              Asegurar mi lugar — es gratis <ArrowRight />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1103,6 +1123,11 @@ export default function Page() {
             ))}
           </div>
           <p className="speakers-note reveal">{content.speakers.note}</p>
+          <div className="section-cta reveal">
+            <a href="#registro" className="btn-primary" data-track="speakers_cta">
+              Quiero aprender de ellos <ArrowRight />
+            </a>
+          </div>
         </div>
       </section>
 
@@ -1137,6 +1162,11 @@ export default function Page() {
               </div>
             </div>
           )}
+          <div className="section-cta reveal">
+            <a href="#registro" className="btn-primary" data-track="testimonials_cta">
+              Quiero ser el próximo caso de éxito <ArrowRight />
+            </a>
+          </div>
         </div>
       </section>
 

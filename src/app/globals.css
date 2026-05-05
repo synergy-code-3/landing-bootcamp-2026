@@ -2546,6 +2546,12 @@ h2.section-title {
   line-height: 1.3;
 }
 
+/* ─── INLINE CTA ────────────────────────────────────────── */
+.section-cta {
+  text-align: center;
+  padding: 40px 0 8px;
+}
+
 /* ─── RULETA SVG ────────────────────────────────────────── */
 .ruleta-wrap {
   display: flex;
