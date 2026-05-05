@@ -2989,6 +2989,7 @@ h2.section-title {
   .readout-cell-label         { font-size: 9px; }
   .readout-cell-value         { font-size: 16px; }
   .readout-cell-value.big     { font-size: 22px; }
+  .readout-delta .readout-cell-value { font-size: 17px; }
 
   /* Prizes */
   .prizes-header              { margin-bottom: 36px; }
