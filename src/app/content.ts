@@ -95,7 +95,6 @@ export const content = {
       "Sabes que tu producto vale más caro, pero cada vez que piensas en subir el precio te agarra el miedo",
       "Tu negocio no crece al ritmo que merece, aunque le metes más horas que nunca",
       "Tu negocio depende 100% de ti. Si paras, todo se detiene. Vacaciones, enfermedad, distracción: cero ingresos",
-      "Ya tomaste cursos. Lo escribiste. Lo guardaste. Nunca lo ejecutaste. Ese es el verdadero costo",
     ],
     quote: "Lo que hoy te limita, en 3 días puede dejar de existir.",
     callout_title: "El Bootcamp es el punto de quiebre.",
