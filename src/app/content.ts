@@ -87,7 +87,7 @@ export const content = {
   // ─── PROBLEMA ─────────────────────────────────────────────────────────────
   problem: {
     label:    "La brecha real",
-    title_1:  "El sistema con el que te enseñaron está diseñado para empleados,",
+    title_1:  "El sistema que te enseñaron está diseñado para empleados,",
     title_em: "no para dueños.",
     body:      "Si intentaste escalar antes y no funcionó, no fallaste tú — fallaron los métodos que no estaban hechos para el tipo de empresario que eres.",
     bullets: [
