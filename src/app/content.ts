@@ -337,17 +337,17 @@ export const content = {
 
       { name: "Claudia Lizaldi",    title: "Conductora · Actriz · Empresaria · Fundadora Soy Mamá Ejecutiva",
         topic: "Liderazgo femenino y emprendimiento con propósito",
-        pillar: "Mentalidad y Decisiones", ig: "claudializaldi",
+        pillar: "Mentalidad y Decisiones",
         initial: "C", bg: "linear-gradient(135deg,#f472b6,#9d174d)", photo: "/speakers/claudializaldi.webp" },
 
       { name: "Fernando Anzures",   title: "Autor de 8 libros · Conferencista internacional · Experto en marketing y marcas",
         topic: "Cómo construir una marca que vende sola en la era digital",
-        pillar: "Ventas y Utilidad", ig: "fernandoanzures",
+        pillar: "Ventas y Utilidad",
         initial: "F", bg: "linear-gradient(135deg,#fb923c,#7c2d12)", photo: "/speakers/fernandoanzures.webp" },
 
       { name: "Milena Sandoval",    title: "Emprendedora · Speaker · Fundadora de comunidades de mujeres líderes en LATAM",
         topic: "De empleada a empresaria: el camino hacia la libertad financiera",
-        pillar: "Mentalidad y Decisiones", ig: "milenasandoval",
+        pillar: "Mentalidad y Decisiones",
         initial: "M", bg: "linear-gradient(135deg,#c084fc,#4c1d95)", photo: "/speakers/milenasandoval.webp" },
     ] as Speaker[],
   },
