@@ -1175,37 +1175,6 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ─── SPEAKERS ────────────────────────────────────── */}
-      <section className="speakers section" data-section="speakers">
-        <div className="container">
-          <div className="speakers-header">
-            <span className="section-label reveal">{content.speakers.label}</span>
-            <h2 className="section-title reveal reveal-delay-1">
-              {content.speakers.title_1} <span className="text-red">{content.speakers.title_em}</span>
-            </h2>
-            <p className="reveal reveal-delay-2" style={{ fontSize: 17, color: "rgba(255,255,255,0.5)", maxWidth: 560, margin: "0 auto" }}>
-              {content.speakers.subtitle}
-            </p>
-          </div>
-          <div className="speakers-grid">
-            {speakers.map((s, i) => (
-              <div key={s.name} className={`reveal reveal-delay-${(i % 4) + 1}`}>
-                <SpeakerCard s={s} />
-              </div>
-            ))}
-          </div>
-          <p className="speakers-note reveal">{content.speakers.note}</p>
-          <div className="section-cta reveal">
-            <a href="#registro" className="btn-primary" data-track="speakers_cta">
-              Quiero aprender de ellos <ArrowRight />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── 3 PILLARS ANIMATION ────────────────────────── */}
-      <PillarsSection />
-
       {/* ─── HOSTS (Jorge + Manuel) ──────────────────────── */}
       <section className="credentials section" data-section="host">
         <div className="credentials-inner container">
@@ -1250,6 +1219,37 @@ export default function Page() {
           </a>
         </div>
       </section>
+
+      {/* ─── SPEAKERS ────────────────────────────────────── */}
+      <section className="speakers section" data-section="speakers">
+        <div className="container">
+          <div className="speakers-header">
+            <span className="section-label reveal">{content.speakers.label}</span>
+            <h2 className="section-title reveal reveal-delay-1">
+              {content.speakers.title_1} <span className="text-red">{content.speakers.title_em}</span>
+            </h2>
+            <p className="reveal reveal-delay-2" style={{ fontSize: 17, color: "rgba(255,255,255,0.5)", maxWidth: 560, margin: "0 auto" }}>
+              {content.speakers.subtitle}
+            </p>
+          </div>
+          <div className="speakers-grid">
+            {speakers.map((s, i) => (
+              <div key={s.name} className={`reveal reveal-delay-${(i % 4) + 1}`}>
+                <SpeakerCard s={s} />
+              </div>
+            ))}
+          </div>
+          <p className="speakers-note reveal">{content.speakers.note}</p>
+          <div className="section-cta reveal">
+            <a href="#registro" className="btn-primary" data-track="speakers_cta">
+              Quiero aprender de ellos <ArrowRight />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── 3 PILLARS ANIMATION ────────────────────────── */}
+      <PillarsSection />
 
       {/* ─── PROBLEM ─────────────────────────────────────── */}
       <section className="problem section" data-section="problem">
