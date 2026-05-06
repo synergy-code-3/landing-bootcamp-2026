@@ -1260,7 +1260,6 @@ export default function Page() {
               <h2 className="section-title reveal reveal-delay-1">
                 {content.problem.title_1} <span className="text-red">{content.problem.title_em}</span>
               </h2>
-              <p className="problem-lead reveal reveal-delay-2">{content.problem.body_lead}</p>
               <p className="reveal reveal-delay-2" style={{ fontSize: 16, color: "rgba(255,255,255,0.6)", lineHeight: 1.75, marginBottom: 0 }}>
                 {content.problem.body}
               </p>

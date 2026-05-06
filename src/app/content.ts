@@ -89,7 +89,6 @@ export const content = {
     label:    "La brecha real",
     title_1:  "El sistema con el que te enseñaron está diseñado para empleados,",
     title_em: "no para dueños.",
-    body_lead: "No necesitas invertir un peso, no necesitas ser experto digital, y no tienes que estar disponible 24/7.",
     body:      "Si intentaste escalar antes y no funcionó, no fallaste tú — fallaron los métodos que no estaban hechos para el tipo de empresario que eres.",
     bullets: [
       "Llevas +2 años con el mismo techo de facturación — aunque trabajas más horas que nunca",
