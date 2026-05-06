@@ -83,12 +83,15 @@ async function sendMetaCAPI(payload: {
     },
   };
 
+  const testCode = process.env.META_TEST_EVENT_CODE;
+
   const res = await fetch(META_CAPI_URL, {
     method:  "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      data:         [event],
-      access_token: META_CAPI_TOKEN,
+      data:             [event],
+      access_token:     META_CAPI_TOKEN,
+      ...(testCode ? { test_event_code: testCode } : {}),
     }),
   });
 
