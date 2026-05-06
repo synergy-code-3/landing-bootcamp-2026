@@ -93,7 +93,7 @@ export const content = {
     bullets: [
       "Llevas +2 años con el mismo techo de facturación — aunque trabajas más horas que nunca",
       "Sabes que tu producto vale más caro, pero cada vez que piensas en subir el precio te agarra el miedo",
-      "Tu negocio no crece al ritmo que merece, aunque le metes más horas que nunca",
+      "Tu negocio depende de decisiones que solo tú puedes tomar — sin sistema, sin equipo, sin salida",
       "Tu negocio depende 100% de ti. Si paras, todo se detiene. Vacaciones, enfermedad, distracción: cero ingresos",
     ],
     quote: "Lo que hoy te limita, en 3 días puede dejar de existir.",
