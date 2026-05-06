@@ -803,6 +803,7 @@ h2.section-title {
   gap: 14px;
   margin-top: 60px;
 }
+.speaker-placeholder { display: block; }
 .speakers-note { text-align: center; margin-top: 40px; font-size: 13px; color: var(--gray-400); }
 
 /* ─── MAGAZINE PORTRAIT CARD ───────────────────────────── */
@@ -3096,8 +3097,9 @@ h2.section-title {
   .prizes-live-note           { font-size: 10.5px; letter-spacing: 0.1em; padding: 12px 18px; margin-top: 36px; }
   .prizes-grid                { grid-template-columns: repeat(2, 1fr); }
 
-  /* Speakers grid — 2 columnas */
+  /* Speakers grid — 2 columnas, sin placeholders */
   .speakers-grid              { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 44px; }
+  .speaker-placeholder        { display: none; }
   .scm-name                   { font-size: 12px; }
   .scm-role                   { font-size: 8px; padding: 3px 7px; }
 
@@ -3163,8 +3165,9 @@ h2.section-title {
   .prize-card-icon            { font-size: 26px; }
   .prize-card-title           { font-size: 11px; }
 
-  /* Speakers — 1 columna en viewports muy pequeños */
+  /* Speakers — 2 columnas en viewports muy pequeños */
   .speakers-grid              { grid-template-columns: repeat(2, 1fr); max-width: 400px; margin: 44px auto 0; }
+  .speaker-placeholder        { display: none; }
 
   /* Pillars */
   .pillar-num                 { font-size: 56px; }

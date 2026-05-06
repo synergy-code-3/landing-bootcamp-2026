@@ -1246,6 +1246,21 @@ export default function Page() {
                 <SpeakerCard s={s} />
               </div>
             ))}
+            {/* Placeholders — quitar cuando estén todos los speakers */}
+            {Array.from({ length: 4 }).map((_, i) => (
+              <div key={`placeholder-${i}`} className="speaker-placeholder reveal">
+                <div className="scm">
+                  <NextImage
+                    className="scm-photo"
+                    src="/speakers/proximamente.webp"
+                    alt="Próximamente"
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, 200px"
+                    style={{ objectFit: "cover", objectPosition: "top center" }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
           <p className="speakers-note reveal">{content.speakers.note}</p>
           <div className="section-cta reveal">
