@@ -92,7 +92,7 @@ function useReveal() {
     const els = document.querySelectorAll(".reveal");
     const obs = new IntersectionObserver(
       (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } }),
-      { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.05, rootMargin: "0px 0px 0px 0px" }
     );
     els.forEach((el) => obs.observe(el));
     return () => obs.disconnect();
@@ -1063,24 +1063,32 @@ export default function Page() {
   const [dbSpeakers, setDbSpeakers] = useState<Speaker[] | null>(null);
 
   useEffect(() => {
-    fetch("/api/speakers")
-      .then((r) => r.json())
-      .then((data: unknown) => {
-        if (!Array.isArray(data) || data.length === 0) return;
-        const mapped = (data as Array<Record<string, unknown>>).map((sp) => ({
-          name:     String(sp.name ?? ""),
-          role:     sp.role     ? String(sp.role)     : null,
-          title:    String(sp.title   ?? ""),
-          topic:    String(sp.topic   ?? ""),
-          pillar:   sp.pillar   ? (String(sp.pillar) as Speaker["pillar"])  : undefined,
-          ig:       sp.ig       ? String(sp.ig)       : undefined,
-          photo:    sp.photo_url ? String(sp.photo_url) : undefined,
-          featured: Boolean(sp.featured),
-          initial:  String(sp.name ?? "").slice(0, 1),
-        }));
-        setDbSpeakers(mapped);
-      })
-      .catch(() => {});
+    const w = window as IdleWindow;
+    const load = () => {
+      fetch("/api/speakers")
+        .then((r) => r.json())
+        .then((data: unknown) => {
+          if (!Array.isArray(data) || data.length === 0) return;
+          const mapped = (data as Array<Record<string, unknown>>).map((sp) => ({
+            name:     String(sp.name ?? ""),
+            role:     sp.role     ? String(sp.role)     : null,
+            title:    String(sp.title   ?? ""),
+            topic:    String(sp.topic   ?? ""),
+            pillar:   sp.pillar   ? (String(sp.pillar) as Speaker["pillar"])  : undefined,
+            ig:       sp.ig       ? String(sp.ig)       : undefined,
+            photo:    sp.photo_url ? String(sp.photo_url) : undefined,
+            featured: Boolean(sp.featured),
+            initial:  String(sp.name ?? "").slice(0, 1),
+          }));
+          setDbSpeakers(mapped);
+        })
+        .catch(() => {});
+    };
+    if (typeof w.requestIdleCallback === "function") {
+      w.requestIdleCallback(load, { timeout: 5000 });
+    } else {
+      w.setTimeout(load, 3000);
+    }
   }, []);
 
   const speakers = useMemo(
