@@ -66,7 +66,7 @@ export const content = {
     badge:    "Evento Synergy Education · 3 Días · +20 Speakers",
     h1_part1: "Transforma tu negocio",
     h1_em:    "en 3 días",
-    subhead:  "Tres días en vivo con más de 20 speakers internacionales en mentalidad, ventas, marketing digital y alto rendimiento. Acceso digital 100% gratuito.",
+    subhead:  "3 días en vivo donde atacamos los 3 ejes que frenan tu negocio: mentalidad, ventas y entorno. Más de 20 speakers internacionales. Acceso digital gratuito.",
     date_nums:  "5, 6 y 7",
     date_month: "Junio 2026",
     date_tag:   "100% online · Acceso gratuito",
