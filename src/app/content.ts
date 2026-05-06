@@ -92,7 +92,7 @@ export const content = {
     body:      "Si intentaste escalar antes y no funcionó, no fallaste tú — fallaron los métodos que no estaban hechos para el tipo de empresario que eres.",
     bullets: [
       "Llevas +2 años con el mismo techo de facturación — aunque trabajas más horas que nunca",
-      "Sabes que tu producto vale más caro, pero cada vez que piensas en subir el precio te agarra el miedo",
+      "Sabes que tu producto vale más caro, pero cada vez que piensas en subir el precio te da miedo",
       "Tu negocio depende de decisiones que solo tú puedes tomar — sin sistema, sin equipo, sin salida",
       "Tu negocio depende 100% de ti. Si paras, todo se detiene. Vacaciones, enfermedad, distracción: cero ingresos",
     ],
