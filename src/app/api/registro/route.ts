@@ -74,8 +74,6 @@ async function sendMetaCAPI(payload: {
     custom_data: {
       content_name:     "Bootcamp 2026",
       content_category: "bootcamp",
-      currency:         "USD",
-      value:            497,           // valor del ticket — ayuda al algoritmo de value-based optimization
       utm_source:       payload.utm_source   || undefined,
       utm_medium:       payload.utm_medium   || undefined,
       utm_campaign:     payload.utm_campaign || undefined,

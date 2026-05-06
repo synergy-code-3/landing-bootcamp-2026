@@ -1047,8 +1047,6 @@ export default function Page() {
 
     // Meta browser pixel — mismo event_id que el CAPI para deduplicación
     trackMetaLead(eventId, {
-      currency:     "USD",
-      value:        497,
       utm_source:   payload.utm_source,
       utm_medium:   payload.utm_medium,
       utm_campaign: payload.utm_campaign,
