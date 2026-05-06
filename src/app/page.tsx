@@ -1247,7 +1247,7 @@ export default function Page() {
               </div>
             ))}
             {/* Placeholders — quitar cuando estén todos los speakers */}
-            {Array.from({ length: 4 }).map((_, i) => (
+            {Array.from({ length: 1 }).map((_, i) => (
               <div key={`placeholder-${i}`} className="speaker-placeholder">
                 <div className="scm">
                   <NextImage
