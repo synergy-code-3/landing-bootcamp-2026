@@ -5,6 +5,7 @@ import NextImage from "next/image";
 import { content, type Speaker } from "./content";
 import { HeroBg } from "./HeroBg";
 import { initTracker, getTracker } from "@/lib/tracker";
+import { trackMetaLead } from "@/components/MetaPixel";
 
 // ─── DATA ──────────────────────────────────────────────────
 const countries = [
@@ -1009,16 +1010,25 @@ export default function Page() {
     const form = formRef.current!;
     const params = new URLSearchParams(window.location.search);
 
+    const getCookie = (name: string) =>
+      document.cookie.split("; ").find((r) => r.startsWith(name + "="))?.split("=")[1] ?? "";
+
+    const eventId = crypto.randomUUID();
+
     const payload = {
-      nombre:       (form.elements.namedItem("name")     as HTMLInputElement).value,
-      email:        (form.elements.namedItem("email")    as HTMLInputElement).value,
-      telefono:     `${phoneCountry.dial} ${phoneVal}`.trim(),
-      pais:         phoneCountry.name,
-      utm_source:   params.get("utm_source")   ?? "",
-      utm_medium:   params.get("utm_medium")   ?? "",
-      utm_campaign: params.get("utm_campaign") ?? "",
-      utm_content:  params.get("utm_content")  ?? "",
-      utm_term:     params.get("utm_term")     ?? "",
+      nombre:           (form.elements.namedItem("name")  as HTMLInputElement).value,
+      email:            (form.elements.namedItem("email") as HTMLInputElement).value,
+      telefono:         `${phoneCountry.dial} ${phoneVal}`.trim(),
+      pais:             phoneCountry.name,
+      utm_source:       params.get("utm_source")   ?? "",
+      utm_medium:       params.get("utm_medium")   ?? "",
+      utm_campaign:     params.get("utm_campaign") ?? "",
+      utm_content:      params.get("utm_content")  ?? "",
+      utm_term:         params.get("utm_term")     ?? "",
+      event_id:         eventId,
+      event_source_url: window.location.href,
+      fbc:              getCookie("_fbc"),
+      fbp:              getCookie("_fbp"),
     };
 
     try {
@@ -1034,6 +1044,12 @@ export default function Page() {
     try {
       getTracker()?.conversion({ email: payload.email, country: payload.pais });
     } catch { /* noop */ }
+
+    // Meta browser pixel — mismo event_id que el CAPI para deduplicación
+    trackMetaLead(eventId, {
+      utm_source:   payload.utm_source,
+      utm_campaign: payload.utm_campaign,
+    });
 
     setRegisteredName(payload.nombre.split(" ")[0]);
     setSubmitted(true);

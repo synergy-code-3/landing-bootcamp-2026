@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Outfit, Poppins } from "next/font/google";
 import { content } from "./content";
+import { MetaPixel } from "@/components/MetaPixel";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -170,7 +171,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <MetaPixel />
+        {children}
+      </body>
     </html>
   );
 }
