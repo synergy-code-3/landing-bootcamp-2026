@@ -281,6 +281,23 @@ h2.section-title {
   .hero-bg-svg * { animation: none !important; }
 }
 
+/* ─── MOBILE: apagar animaciones decorativas pesadas ───────── */
+@media (max-width: 768px) {
+  .orb-red, .orb-blue, .orb-red-2, .orb-blue-m,
+  .orb-wave-l, .orb-wave-r,
+  .wave-group-l, .wave-group-r,
+  .geo-plus-1, .geo-plus-2, .geo-plus-3, .geo-plus-4, .geo-plus-5,
+  .geo-plus-m1, .geo-plus-m2,
+  .geo-venn-1, .geo-venn-2, .geo-venn-m,
+  .geo-arc-1, .geo-arc-2, .geo-arc-3, .geo-arc-m,
+  .streak-1, .streak-2, .streak-3,
+  .p1,.p2,.p3,.p4,.p5,.p6,.p7,.p8,.p9,.p10,.p11,.p12,
+  .p13,.p14,.p15,.p16,.p17,.p18,.p19,.p20,.p21,.p22,.p23,.p24 {
+    animation: none !important;
+    will-change: auto;
+  }
+}
+
 /* ─── HERO DATE ──────────────────────────────────────────── */
 .hero-date {
   display: flex;
