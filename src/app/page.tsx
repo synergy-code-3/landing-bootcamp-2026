@@ -1258,6 +1258,10 @@ export default function Page() {
                     sizes="(max-width: 640px) 50vw, (max-width: 960px) 33vw, 200px"
                     style={{ objectFit: "cover", objectPosition: "top center" }}
                   />
+                  <div className="scm-overlay" />
+                  <div className="scm-info">
+                    <p className="scm-name">Próximamente</p>
+                  </div>
                 </div>
               </div>
             ))}
