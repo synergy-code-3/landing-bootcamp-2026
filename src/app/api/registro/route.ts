@@ -38,7 +38,8 @@ const COUNTRY_ISO: Record<string, string> = {
 
 async function sendMetaCAPI(payload: {
   nombre: string; email: string; telefono: string; pais: string;
-  utm_source: string; utm_campaign: string;
+  utm_source: string; utm_medium: string; utm_campaign: string;
+  utm_content: string; utm_term: string;
   ip: string; user_agent: string;
   fbc: string; fbp: string;
   event_id: string; event_source_url: string;
@@ -73,10 +74,14 @@ async function sendMetaCAPI(payload: {
     custom_data: {
       content_name:     "Bootcamp 2026",
       content_category: "bootcamp",
-      currency:         "MXN",
-      value:            0,
+      currency:         "USD",
+      value:            497,           // valor del ticket — ayuda al algoritmo de value-based optimization
       utm_source:       payload.utm_source   || undefined,
+      utm_medium:       payload.utm_medium   || undefined,
       utm_campaign:     payload.utm_campaign || undefined,
+      utm_content:      payload.utm_content  || undefined,
+      utm_term:         payload.utm_term     || undefined,
+      country:          payload.pais         || undefined,
     },
   };
 
@@ -187,11 +192,14 @@ export async function POST(req: NextRequest) {
   sendMetaCAPI({
     nombre, email, telefono, pais: body.pais ?? "",
     utm_source:   body.utm_source   ?? "",
+    utm_medium:   body.utm_medium   ?? "",
     utm_campaign: body.utm_campaign ?? "",
+    utm_content:  body.utm_content  ?? "",
+    utm_term:     body.utm_term     ?? "",
     ip, user_agent,
-    fbc:              body.fbc        ?? "",
-    fbp:              body.fbp        ?? "",
-    event_id:         body.event_id   ?? crypto.randomUUID(),
+    fbc:              body.fbc             ?? "",
+    fbp:              body.fbp             ?? "",
+    event_id:         body.event_id        ?? crypto.randomUUID(),
     event_source_url: body.event_source_url ?? "",
   }).catch((err) => console.error("[META CAPI]", err));
 
