@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
 import supabase from "@/lib/db";
-import { parseUA, groupCount } from "@/lib/parseUA";
+
+function groupCount<T>(arr: T[], key: (item: T) => string): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const item of arr) {
+    const k = key(item) || "Desconocido";
+    out[k] = (out[k] ?? 0) + 1;
+  }
+  return out;
+}
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -13,63 +21,65 @@ export async function GET(req: NextRequest) {
 
   if (!slug) return NextResponse.json({ error: "slug requerido" }, { status: 400 });
 
-  // ── Eventos ─────────────────────────────────────────────────────────────────
-  let evQuery = supabase
-    .from("eventos")
-    .select("session_id, user_agent, ip_country, ip_city, utm_source, created_at")
-    .eq("funnel_slug", slug);
+  // ── Sesiones (visitantes) desde tabla sessions ──────────────
+  let sesQuery = supabase
+    .from("sessions")
+    .select("session_id, visitor_id, device_type, os, browser, ip_country, ip_city, utm_source, is_bot, created_at")
+    .eq("funnel_slug", slug)
+    .eq("is_bot", false);
 
-  if (desde)  evQuery = evQuery.gte("created_at", desde);
-  if (hasta)  evQuery = evQuery.lte("created_at", hasta + "T23:59:59Z");
-  if (pais)   evQuery = evQuery.eq("ip_country", pais);
-  if (fuente) evQuery = evQuery.eq("utm_source", fuente);
+  if (desde)  sesQuery = sesQuery.gte("created_at", desde);
+  if (hasta)  sesQuery = sesQuery.lte("created_at", hasta + "T23:59:59Z");
+  if (pais)   sesQuery = sesQuery.eq("ip_country", pais);
+  if (fuente) sesQuery = sesQuery.ilike("utm_source", `%${fuente}%`);
+  if (dispositivo && dispositivo !== "Todos") sesQuery = sesQuery.eq("device_type", dispositivo);
 
-  const { data: eventosRaw } = await evQuery;
-  const eventosData = (eventosRaw ?? []) as { session_id: string; user_agent: string; ip_country: string; ip_city: string; utm_source: string; created_at: string }[];
+  const { data: sesionesRaw, error: sesErr } = await sesQuery.limit(5000);
+  if (sesErr) return NextResponse.json({ error: sesErr.message }, { status: 500 });
 
-  const sesionesMap = new Map<string, typeof eventosData[number]>();
-  eventosData.forEach((e) => { if (!sesionesMap.has(e.session_id)) sesionesMap.set(e.session_id, e); });
-  let sesiones = Array.from(sesionesMap.values());
+  const sesiones = sesionesRaw ?? [];
 
-  if (dispositivo) {
-    sesiones = sesiones.filter((s) => parseUA(s.user_agent).tipo === dispositivo);
-  }
-
-  const visitantesTipo    = groupCount(sesiones, (s) => parseUA(s.user_agent).tipo);
-  const visitantesOS      = groupCount(sesiones, (s) => parseUA(s.user_agent).os);
-  const visitantesBrowser = groupCount(sesiones, (s) => parseUA(s.user_agent).browser);
-  const visitantesPais    = groupCount(sesiones, (s) => s.ip_country || "Desconocido");
-  const visitantesCiudad  = groupCount(sesiones, (s) => s.ip_city    || "Desconocido");
+  const visitantesTipo    = groupCount(sesiones, (s) => s.device_type  || "Desconocido");
+  const visitantesOS      = groupCount(sesiones, (s) => s.os           || "Desconocido");
+  const visitantesBrowser = groupCount(sesiones, (s) => s.browser      || "Desconocido");
+  const visitantesPais    = groupCount(sesiones, (s) => s.ip_country   || "Desconocido");
+  const visitantesCiudad  = groupCount(sesiones, (s) => s.ip_city      || "Desconocido");
   const utmSources        = groupCount(
     sesiones.filter((s) => s.utm_source),
     (s) => s.utm_source
   );
 
-  // ── Registros ───────────────────────────────────────────────────────────────
+  // ── Registros ───────────────────────────────────────────────
   let regQuery = supabase
     .from("registros")
     .select("id, user_agent, ip_country, ip_city, utm_source, created_at")
     .eq("funnel_slug", slug)
     .order("created_at", { ascending: false })
-    .limit(1000);
+    .limit(2000);
 
   if (desde)  regQuery = regQuery.gte("created_at", desde);
   if (hasta)  regQuery = regQuery.lte("created_at", hasta + "T23:59:59Z");
   if (pais)   regQuery = regQuery.eq("ip_country", pais);
-  if (fuente) regQuery = regQuery.eq("utm_source", fuente);
+  if (fuente) regQuery = regQuery.ilike("utm_source", `%${fuente}%`);
 
   const { data: registrosRaw } = await regQuery;
   let registros = (registrosRaw ?? []) as { id: string; user_agent: string; ip_country: string; ip_city: string; utm_source: string; created_at: string }[];
 
-  if (dispositivo) {
-    registros = registros.filter((r) => parseUA(r.user_agent).tipo === dispositivo);
+  // filtro dispositivo via user_agent si aplica (registros no tienen device_type)
+  if (dispositivo && dispositivo !== "Todos") {
+    const isMobile = /Mobile|Android|iPhone|iPod/i;
+    const isTablet = /iPad|Tablet/i;
+    registros = registros.filter((r) => {
+      const ua = r.user_agent ?? "";
+      if (dispositivo === "mobile")  return isMobile.test(ua) && !isTablet.test(ua);
+      if (dispositivo === "tablet")  return isTablet.test(ua);
+      if (dispositivo === "desktop") return !isMobile.test(ua) && !isTablet.test(ua);
+      return true;
+    });
   }
 
-  const registradosTipo    = groupCount(registros, (r) => parseUA(r.user_agent).tipo);
-  const registradosOS      = groupCount(registros, (r) => parseUA(r.user_agent).os);
-  const registradosBrowser = groupCount(registros, (r) => parseUA(r.user_agent).browser);
-  const registradosPais    = groupCount(registros, (r) => r.ip_country || "Desconocido");
-  const registradosCiudad  = groupCount(registros, (r) => r.ip_city    || "Desconocido");
+  const registradosPais   = groupCount(registros, (r) => r.ip_country || "Desconocido");
+  const registradosCiudad = groupCount(registros, (r) => r.ip_city    || "Desconocido");
 
   return NextResponse.json({
     totalSesiones:  sesiones.length,
@@ -86,11 +96,8 @@ export async function GET(req: NextRequest) {
       ciudad:  visitantesCiudad,
     },
     registrados: {
-      tipo:    registradosTipo,
-      os:      registradosOS,
-      browser: registradosBrowser,
-      pais:    registradosPais,
-      ciudad:  registradosCiudad,
+      pais:   registradosPais,
+      ciudad: registradosCiudad,
     },
   });
 }
