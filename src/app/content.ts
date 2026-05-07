@@ -418,7 +418,7 @@ export const content = {
     title_em: "cambiar el siguiente año",
     subtitle: "Cupos limitados. Regístrate y asegura tu acceso digital gratuito.\nEl Bootcamp es 100% en vivo, sin repetición.",
     form: {
-      name_label:        "Nombre completo",
+      name_label:        "Nombre y apellido",
       name_placeholder:  "Tu nombre y apellido",
       email_label:       "Correo electrónico",
       email_placeholder: "tucorreo@ejemplo.com",
