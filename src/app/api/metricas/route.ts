@@ -24,12 +24,12 @@ export async function GET(req: NextRequest) {
   // ── Sesiones (visitantes) desde tabla sessions ──────────────
   let sesQuery = supabase
     .from("sessions")
-    .select("session_id, visitor_id, device_type, os, browser, ip_country, ip_city, utm_source, is_bot, created_at")
+    .select("session_id, visitor_id, device_type, os, browser, ip_country, ip_city, utm_source, is_bot, first_seen_at")
     .eq("funnel_slug", slug)
     .eq("is_bot", false);
 
-  if (desde)  sesQuery = sesQuery.gte("created_at", desde);
-  if (hasta)  sesQuery = sesQuery.lte("created_at", hasta + "T23:59:59Z");
+  if (desde)  sesQuery = sesQuery.gte("first_seen_at", desde);
+  if (hasta)  sesQuery = sesQuery.lte("first_seen_at", hasta + "T23:59:59Z");
   if (pais)   sesQuery = sesQuery.eq("ip_country", pais);
   if (fuente) sesQuery = sesQuery.ilike("utm_source", `%${fuente}%`);
   if (dispositivo && dispositivo !== "Todos") sesQuery = sesQuery.eq("device_type", dispositivo);
