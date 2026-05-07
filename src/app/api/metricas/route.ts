@@ -1,13 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import supabase from "@/lib/db";
 
-function groupCount<T>(arr: T[], key: (item: T) => string): Record<string, number> {
-  const out: Record<string, number> = {};
+function groupCount<T>(arr: T[], key: (item: T) => string): { label: string; count: number }[] {
+  const map: Record<string, number> = {};
   for (const item of arr) {
     const k = key(item) || "Desconocido";
-    out[k] = (out[k] ?? 0) + 1;
+    map[k] = (map[k] ?? 0) + 1;
   }
-  return out;
+  return Object.entries(map)
+    .map(([label, count]) => ({ label, count }))
+    .sort((a, b) => b.count - a.count);
 }
 
 export async function GET(req: NextRequest) {
