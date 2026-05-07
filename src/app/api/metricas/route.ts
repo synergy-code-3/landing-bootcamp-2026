@@ -78,8 +78,32 @@ export async function GET(req: NextRequest) {
     });
   }
 
-  const registradosPais   = groupCount(registros, (r) => r.ip_country || "Desconocido");
-  const registradosCiudad = groupCount(registros, (r) => r.ip_city    || "Desconocido");
+  const parseUaSimple = (ua: string) => {
+    const isTablet  = /iPad|Tablet/i.test(ua);
+    const isMobile  = !isTablet && /Mobile|Android|iPhone|iPod/i.test(ua);
+    const tipo      = isTablet ? "tablet" : isMobile ? "mobile" : "desktop";
+    let os = "Otro";
+    if (/iPhone|iPod/.test(ua))   os = "iOS";
+    else if (/iPad/.test(ua))     os = "iPadOS";
+    else if (/Android/.test(ua))  os = "Android";
+    else if (/Windows/.test(ua))  os = "Windows";
+    else if (/Mac OS X/.test(ua)) os = "macOS";
+    else if (/Linux/.test(ua))    os = "Linux";
+    let browser = "Otro";
+    if (/Edg\//.test(ua))               browser = "Edge";
+    else if (/OPR\/|Opera/.test(ua))    browser = "Opera";
+    else if (/SamsungBrowser/.test(ua)) browser = "Samsung";
+    else if (/Firefox\//.test(ua))      browser = "Firefox";
+    else if (/Chrome\//.test(ua))       browser = "Chrome";
+    else if (/Safari\//.test(ua))       browser = "Safari";
+    return { tipo, os, browser };
+  };
+
+  const registradosTipo    = groupCount(registros, (r) => parseUaSimple(r.user_agent ?? "").tipo);
+  const registradosOS      = groupCount(registros, (r) => parseUaSimple(r.user_agent ?? "").os);
+  const registradosBrowser = groupCount(registros, (r) => parseUaSimple(r.user_agent ?? "").browser);
+  const registradosPais    = groupCount(registros, (r) => r.ip_country || "Desconocido");
+  const registradosCiudad  = groupCount(registros, (r) => r.ip_city    || "Desconocido");
 
   return NextResponse.json({
     totalSesiones:  sesiones.length,
@@ -96,8 +120,11 @@ export async function GET(req: NextRequest) {
       ciudad:  visitantesCiudad,
     },
     registrados: {
-      pais:   registradosPais,
-      ciudad: registradosCiudad,
+      tipo:    registradosTipo,
+      os:      registradosOS,
+      browser: registradosBrowser,
+      pais:    registradosPais,
+      ciudad:  registradosCiudad,
     },
   });
 }
