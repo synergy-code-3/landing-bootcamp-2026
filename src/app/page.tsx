@@ -1014,6 +1014,40 @@ function readUtms(): Record<string, string> {
   } catch { return {}; }
 }
 
+// Genera o recupera un UUID estable del visitante (persiste entre sesiones)
+function getOrCreateVisitorId(): string {
+  try {
+    let vid = localStorage.getItem("_vid");
+    if (!vid) {
+      vid = crypto.randomUUID();
+      localStorage.setItem("_vid", vid);
+    }
+    return vid;
+  } catch { return ""; }
+}
+
+// Guarda fbclid en localStorage para reconstruir _fbc en visitas de retorno
+function saveFbclid(params: URLSearchParams) {
+  const fbclid = params.get("fbclid");
+  if (!fbclid) return;
+  try {
+    localStorage.setItem("_fbclid_raw", fbclid);
+    localStorage.setItem("_fbclid_ts",  String(Date.now()));
+  } catch { /* noop */ }
+}
+
+// Devuelve _fbc: usa cookie si existe, reconstruye desde localStorage si no
+function resolveFbc(cookieFbc: string): string {
+  if (cookieFbc) return cookieFbc;
+  try {
+    const fbclid = localStorage.getItem("_fbclid_raw");
+    const ts     = localStorage.getItem("_fbclid_ts");
+    if (!fbclid || !ts) return "";
+    const seconds = Math.floor(Number(ts) / 1000);
+    return `fb.1.${seconds}.${fbclid}`;
+  } catch { return ""; }
+}
+
 export default function Page() {
   useReveal();
   useTracker();
@@ -1025,9 +1059,12 @@ export default function Page() {
   const [phoneCountry, setPhoneCountry] = useState<PhoneCountry>(PHONE_COUNTRIES[0]);
   const formRef = useRef<HTMLFormElement>(null);
 
-  // Guardar UTMs en localStorage al aterrizaje para recuperarlos en visitas de retorno
+  // Guardar UTMs + fbclid al aterrizaje; generar visitor_id estable
   useEffect(() => {
-    saveUtms(new URLSearchParams(window.location.search));
+    const params = new URLSearchParams(window.location.search);
+    saveUtms(params);
+    saveFbclid(params);
+    getOrCreateVisitorId();
   }, []);
 
   async function handleSubmit(e: React.FormEvent) {
@@ -1041,7 +1078,9 @@ export default function Page() {
     const getCookie = (name: string) =>
       document.cookie.split("; ").find((r) => r.startsWith(name + "="))?.split("=")[1] ?? "";
 
-    const eventId = crypto.randomUUID();
+    const eventId   = crypto.randomUUID();
+    const visitorId = getOrCreateVisitorId();
+    const fbc       = resolveFbc(getCookie("_fbc"));
 
     // URL tiene prioridad; si no hay UTMs en la URL, usar los guardados del primer aterrizaje
     const utmSource   = params.get("utm_source")   || saved.utm_source   || "";
@@ -1062,8 +1101,9 @@ export default function Page() {
       utm_term:         utmTerm,
       event_id:         eventId,
       event_source_url: window.location.href,
-      fbc:              getCookie("_fbc"),
-      fbp:              getCookie("_fbp"),
+      fbc,
+      fbp:        getCookie("_fbp"),
+      visitor_id: visitorId,
     };
 
     try {
