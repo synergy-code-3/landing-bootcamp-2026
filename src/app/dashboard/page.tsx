@@ -433,7 +433,11 @@ function SeccionMetricas({ slug, filtros }: { slug: string; filtros: Filtros }) 
     setData(null);
     fetch(buildQuery("/api/metricas", slug, filtros))
       .then((r) => r.json())
-      .then((d) => { setData(d); setLoading(false); });
+      .then((d) => {
+        if (d?.totalSesiones !== undefined) setData(d);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
   }, [slug, filtros]);
 
   return (
@@ -584,9 +588,9 @@ function SeccionLeads({ slug, filtros }: { slug: string; filtros: Filtros }) {
   }, [slug, filtros]);
 
   const filtered = leads.filter((l) =>
-    l.nombre.toLowerCase().includes(search.toLowerCase()) ||
-    l.email.toLowerCase().includes(search.toLowerCase()) ||
-    l.telefono.includes(search)
+    (l.nombre ?? "").toLowerCase().includes(search.toLowerCase()) ||
+    (l.email ?? "").toLowerCase().includes(search.toLowerCase()) ||
+    (l.telefono ?? "").includes(search)
   );
 
   function exportCsv() {
