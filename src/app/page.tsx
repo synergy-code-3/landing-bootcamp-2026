@@ -992,6 +992,28 @@ function PhoneCountryInput({
   );
 }
 
+const UTM_KEYS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const;
+const UTM_TTL  = 30 * 24 * 60 * 60 * 1000; // 30 días
+
+function saveUtms(params: URLSearchParams) {
+  if (!params.get("utm_source")) return;
+  try {
+    const utms: Record<string, string> = { _saved_at: String(Date.now()) };
+    UTM_KEYS.forEach((k) => { utms[k] = params.get(k) ?? ""; });
+    localStorage.setItem("_utms", JSON.stringify(utms));
+  } catch { /* noop */ }
+}
+
+function readUtms(): Record<string, string> {
+  try {
+    const raw = localStorage.getItem("_utms");
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Record<string, string>;
+    if (Date.now() - Number(parsed._saved_at) > UTM_TTL) return {};
+    return parsed;
+  } catch { return {}; }
+}
+
 export default function Page() {
   useReveal();
   useTracker();
@@ -1003,28 +1025,41 @@ export default function Page() {
   const [phoneCountry, setPhoneCountry] = useState<PhoneCountry>(PHONE_COUNTRIES[0]);
   const formRef = useRef<HTMLFormElement>(null);
 
+  // Guardar UTMs en localStorage al aterrizaje para recuperarlos en visitas de retorno
+  useEffect(() => {
+    saveUtms(new URLSearchParams(window.location.search));
+  }, []);
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
 
     const form = formRef.current!;
-    const params = new URLSearchParams(window.location.search);
+    const params  = new URLSearchParams(window.location.search);
+    const saved   = readUtms();
 
     const getCookie = (name: string) =>
       document.cookie.split("; ").find((r) => r.startsWith(name + "="))?.split("=")[1] ?? "";
 
     const eventId = crypto.randomUUID();
 
+    // URL tiene prioridad; si no hay UTMs en la URL, usar los guardados del primer aterrizaje
+    const utmSource   = params.get("utm_source")   || saved.utm_source   || "";
+    const utmMedium   = params.get("utm_medium")   || saved.utm_medium   || "";
+    const utmCampaign = params.get("utm_campaign") || saved.utm_campaign || "";
+    const utmContent  = params.get("utm_content")  || saved.utm_content  || "";
+    const utmTerm     = params.get("utm_term")     || saved.utm_term     || "";
+
     const payload = {
       nombre:           (form.elements.namedItem("name")  as HTMLInputElement).value,
       email:            (form.elements.namedItem("email") as HTMLInputElement).value,
       telefono:         `${phoneCountry.dial} ${phoneVal}`.trim(),
       pais:             phoneCountry.name,
-      utm_source:       params.get("utm_source")   ?? "",
-      utm_medium:       params.get("utm_medium")   ?? "",
-      utm_campaign:     params.get("utm_campaign") ?? "",
-      utm_content:      params.get("utm_content")  ?? "",
-      utm_term:         params.get("utm_term")     ?? "",
+      utm_source:       utmSource,
+      utm_medium:       utmMedium,
+      utm_campaign:     utmCampaign,
+      utm_content:      utmContent,
+      utm_term:         utmTerm,
       event_id:         eventId,
       event_source_url: window.location.href,
       fbc:              getCookie("_fbc"),
