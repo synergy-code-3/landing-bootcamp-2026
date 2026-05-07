@@ -43,6 +43,7 @@ async function sendMetaCAPI(payload: {
   ip: string; user_agent: string;
   fbc: string; fbp: string;
   visitor_id: string;
+  ip_city: string; ip_region: string;
   event_id: string; event_source_url: string;
 }) {
   const [firstName, ...rest] = payload.nombre.trim().split(" ");
@@ -61,6 +62,8 @@ async function sendMetaCAPI(payload: {
     fbc: payload.fbc || undefined,
     fbp: payload.fbp || undefined,
     external_id: payload.visitor_id ? [sha256(payload.visitor_id)] : undefined,
+    ct:  payload.ip_city   ? [sha256(payload.ip_city.toLowerCase())]   : undefined,
+    st:  payload.ip_region ? [sha256(payload.ip_region.toLowerCase())] : undefined,
   };
 
   // Eliminar undefined
@@ -200,6 +203,8 @@ export async function POST(req: NextRequest) {
     fbc:              body.fbc              ?? "",
     fbp:              body.fbp              ?? "",
     visitor_id:       body.visitor_id       ?? "",
+    ip_city,
+    ip_region,
     event_id:         body.event_id         ?? crypto.randomUUID(),
     event_source_url: body.event_source_url ?? "",
   }).catch((err) => console.error("[META CAPI]", err));

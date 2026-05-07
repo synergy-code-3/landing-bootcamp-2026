@@ -35,13 +35,33 @@ export function MetaPixel() {
   );
 }
 
-export function trackMetaLead(eventId: string, params: Record<string, unknown> = {}) {
+async function sha256Browser(value: string): Promise<string> {
+  const data    = new TextEncoder().encode(value.trim().toLowerCase());
+  const buffer  = await crypto.subtle.digest("SHA-256", data);
+  return Array.from(new Uint8Array(buffer)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+export async function trackMetaLead(
+  eventId: string,
+  params: Record<string, unknown> & { email?: string; phone?: string } = {}
+) {
   if (typeof window === "undefined" || !window.fbq) return;
+
+  const { email, phone, ...rest } = params;
+
+  const advancedMatching: Record<string, string> = {};
+  if (email) advancedMatching.em = await sha256Browser(email);
+  if (phone) advancedMatching.ph = await sha256Browser(phone.replace(/\D/g, ""));
+
+  if (Object.keys(advancedMatching).length) {
+    window.fbq("init", PIXEL_ID, advancedMatching);
+  }
+
   window.fbq("track", "Lead", {
     content_name:     "Bootcamp 2026",
     content_category: "bootcamp",
     currency:         "MXN",
     value:            0,
-    ...params,
+    ...rest,
   }, { eventID: eventId });
 }
