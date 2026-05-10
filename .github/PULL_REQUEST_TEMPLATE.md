@@ -21,7 +21,7 @@
 
 ## Checklist
 
-- [ ] `npm run lint` pasa
+- [ ] `npx tsc --noEmit` pasa
 - [ ] `npm run build` pasa
 - [ ] Probado en `npm run dev` (golden path + edge cases)
 - [ ] Si toca DB: incluye migración SQL y se corrió en Supabase
