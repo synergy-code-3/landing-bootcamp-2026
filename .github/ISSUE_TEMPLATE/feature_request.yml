@@ -1,0 +1,41 @@
+name: Feature request
+description: Proponer una nueva funcionalidad o mejora
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema o necesidad
+      description: ¿Qué problema resuelve? ¿A quién afecta?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: ¿Cómo lo resolverías? Detalle suficiente para que alguien lo implemente.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      options:
+        - Landing pública
+        - /dashboard
+        - /ops
+        - API
+        - Base de datos / Supabase
+        - Infra / deploy
+        - Otro
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto adicional
