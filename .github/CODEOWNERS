@@ -1,0 +1,12 @@
+# Code owners — reviewer obligatorio en PRs.
+# Reemplazar @juan-handle por el handle real de Juan (programador principal).
+# Docs: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+* @juan-handle
+
+# Áreas críticas — siempre revisar
+/.github/         @juan-handle
+/app/api/         @juan-handle
+/app/ops/         @juan-handle
+/neon-migration.sql  @juan-handle
+/ops-migration.sql   @juan-handle
